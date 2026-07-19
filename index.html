@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Презентація: Досконалість у деталях: Текстильні рішення преміум-класу</title>
+  
+  <!-- Tailwind CSS для адаптивного рендерингу -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    /* Преміальні автономні шрифти та стилі */
+    :root {
+      --color-primary: #bd603f;
+      --color-primary-hover: #a54c2d;
+      --font-serif: 'Playfair Display', Georgia, Cambria, 'Times New Roman', Times, serif;
+      --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    body {
+      font-family: var(--font-sans);
+      overflow: hidden;
+      touch-action: pan-y;
+      background-color: #f3f2f0; /* Теплий кремовий преміум-фон */
+    }
+    
+    .font-serif {
+      font-family: var(--font-serif);
+    }
+
+    /* Анімація появи слайдів */
+    .slide-enter-active {
+      animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.99); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Стилізація скроллбару у формі */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(189, 96, 63, 0.3);
+      border-radius: 99px;
+    }
+  </style>
+</head>
+<body class="text-stone-900 flex flex-col h-screen w-screen select-none transition-colors duration-500">
+
+  <!-- Контейнер даних презентації (Локалізований контент) -->
+  <script id="shtayer-state" type="application/json">
+    {
+      "slides": [
+        {
+          "id": "slide-1",
+          "number": 1,
+          "layout": "full-bleed",
+          "image": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop",
+          "content": {
+            "uk": {
+              "title": "Досконалість у деталях: Текстильні рішення преміум-класу",
+              "subtitle": "Презентація для партнерів — архітекторів та дизайнерів інтер'єру",
+              "body": "Особлива ніша текстилю для вибагливих клієнтів. Створюємо вироби, які гармонійно завершують авторську візію простору."
+            },
+            "ru": {
+              "title": "Совершенство в деталях: Текстильные решения премиум-класса",
+              "subtitle": "Презентация для партнеров — архитекторов и дизайнеров интерьера",
+              "body": "Особая ниша текстиля для взыскательных клиентов. Создаем изделия, которые гармонично завершают авторское видение пространства."
+            },
+            "en": {
+              "title": "Perfection in Details: Premium Textile Solutions",
+              "subtitle": "Presentation for Partners — Architects and Interior Designers",
+              "body": "A dedicated textile niche for discerning clients. We craft pieces that harmoniously complete the designer's vision of space."
+            }
+          }
+        },
+        {
+          "id": "slide-2",
+          "number": 2,
+          "layout": "split",
+          "image": "https://images.unsplash.com/photo-1629949009765-40ff34a1a4a1?q=80&w=1200&auto=format&fit=crop",
+          "content": {
+            "uk": {
+              "title": "Візія дизайнера завершується дотиком",
+              "subtitle": "Тактильний інтелект вашого інтер'єру",
+              "body": "Ви створюєте архітектуру простору, задаєте об'єми та світло. Але клієнт починає відчувати свій дім, коли торкається його поверхонь.\\n\\nТекстиль — це шкіра інтер'єру. Фінальний акорд, який або підкреслить статус вашого проєкту, або знецінить його."
+            },
+            "ru": {
+              "title": "Видение дизайнера завершается прикосновением",
+              "subtitle": "Тактильный интеллект вашего интерьера",
+              "body": "Вы создаете архитектуру пространства, задаете объемы и свет. Но клиент начинает ощущать свой дом, когда касается его поверхностей.\\n\\nТекстиль — это кожа интерьера. Финальный аккорд, который либо подчеркнет статус вашего проекта, либо обесценит его."
+            },
+            "en": {
+              "title": "A Designer's Vision Culminates in Touch",
+              "subtitle": "Tactile Intelligence of Your Interior",
+              "body": "You shape the architecture of space, setting volumes and light. But a client truly begins to feel their home when touching its surfaces.\\n\\nTextiles are the skin of the interior. The final chord that will either elevate the status of your project or diminish it."
+            }
+          }
+        },
+        {
+          "id": "slide-3",
+          "number": 3,
+          "layout": "split",
+          "image": "https://shtayer.ua/image/catalog/postelnoe-bele/balmy/86.jpg",
+          "content": {
+            "uk": {
+              "title": "Ательє тихих розкошів",
+              "subtitle": "Текстиль, що говорить мовою високого дизайну",
+              "body": "Ми не орієнтовані на мас-маркет. Наша ніша — індивідуальне пошиття ексклюзивного текстилю для приватних резиденцій, бутик-готелів та супер-яхт.\\n\\nВикористовуємо лише благородні натуральні тканини і працюємо за безкомпромісними стандартами якості."
+            },
+            "ru": {
+              "title": "Ателье тихой роскоши",
+              "subtitle": "Текстиль, говорящий на языке высокого дизайна",
+              "body": "Мы не ориентированы на масс-market. Наша ниша — индивидуальный пошив эксклюзивного текстиля для частных резиденций, бутик-отелей и супер-яхт.\\n\\nИспользуем только благородные натуральные ткани и работаем по бескомпромиссным стандартам качества."
+            },
+            "en": {
+              "title": "Atelier of Quiet Luxury",
+              "subtitle": "Textiles Speaking the Language of High Design",
+              "body": "We are not driven by mass-market demands. Our niche is bespoke tailoring of exclusive textiles for private residences, boutique hotels, and superyachts.\\n\\nWe utilize only noble natural fabrics and operate under uncompromising standards of quality."
+            }
+          }
+        },
+        {
+          "id": "slide-4",
+          "number": 4,
+          "layout": "detail",
+          "image": "https://shtayer.ua/image/catalog/sorochka%20perkal/223-min.jpg",
+          "content": {
+            "uk": {
+              "title": "Мануфактурний підхід та майстерність",
+              "subtitle": "Якість, за яку ви з гордістю ручаєтесь перед клієнтом",
+              "body": "• Матеріали: Сертифікована довговолокниста єгипетська бавовна, натуральний шовк, льон та преміальні наповнювачі.\\n• Виконання: Кожен шов, кант і вишивка проходять ручний контроль.\\n• Відчуття: Ваші клієнти відчують виняткову преміальність з першого ж дотику."
+            },
+            "ru": {
+              "title": "Мануфактурный подход и мастерство",
+              "subtitle": "Качество, за которое вы с гордостью ручаетесь перед клиентом",
+              "body": "• Материалы: Сертифицированный длинноволокнистый египетский хлопок, натуральный шелк, лен и премиальные наполнители.\\n• Исполнение: Каждый шов, кант и вышивка проходят ручной контроль.\\n• Ощущения: Ваши клиенты почувствуют исключительную премиальность с первого же прикосновения."
+            },
+            "en": {
+              "title": "Atelier Craftsmanship & Detail",
+              "subtitle": "Quality You Proudly Guarantee to Your Client",
+              "body": "• Materials: Certified long-staple Egyptian cotton, mulberry silk, and organic linen.\\n• Tailoring: Every seam, piping, and embroidery undergoes meticulous hand inspection.\\n• Experience: Your clients will feel the extraordinary quality from the very first touch."
+            }
+          }
+        },
+        {
+          "id": "slide-5",
+          "number": 5,
+          "layout": "grid",
+          "image": "https://shtayer.ua/image/catalog/postelnoe-bele/flat%20grey/img19086-min.jpg",
+          "content": {
+            "uk": {
+              "title": "Комплектація спальні та ванної кімнати 'під ключ'",
+              "subtitle": "Асортимент, що закриває будь-які текстильні потреби об'єкта",
+              "body": "1. Постільна білизна: Колекції з преміум сатину та перкалю. Пошиття під індивідуальні розміри.\\n2. Ковдри та подушки: Спеціальне меню подушок різної пружності для ідеального клімату сну.\\n3. Махрові вироби: Халати та рушники преміальної щільності з відчуттям 5-зіркового SPA."
+            },
+            "ru": {
+              "title": "Комплектация спальни и ванной 'под ключ'",
+              "subtitle": "Ассортимент, закрывающий любые текстильные потребности объекта",
+              "body": "1. Постельное белье: Коллекции из премиум сатина и перкаля. Пошив под индивидуальные размеры.\\n2. Одеяла и подушки: Специальное меню подушек разной упругости для климат-контроля сна.\\n3. Махровые изделия: Халаты и полотенца премиальной плотности с ощущением 5-звездного SPA."
+            },
+            "en": {
+              "title": "Turnkey Bedroom & Bathroom Collection",
+              "subtitle": "A Curated Portfolio Covering All Textile Specifications",
+              "body": "1. Bed Linens: Refined sateen, percale, and silk collections. Custom tailoring.\\n2. Pillows & Duvets: An intuitive 'pillow menu' of varying firmness for ultimate sleep comfort.\\n3. Spa Attire: Premium high-density robes and towels delivering a 5-star spa sensation."
+            }
+          }
+        },
+        {
+          "id": "slide-6",
+          "number": 6,
+          "layout": "split",
+          "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=1200&auto=format&fit=crop",
+          "content": {
+            "uk": {
+              "title": "Професійні можливості для дизайнерів та архітекторів",
+              "subtitle": "Співпраця, що підкреслить статус ваших проєктів",
+              "body": "• Партнерські програми: Персональна агентська винагорода або індивідуальні знижки для ваших клієнтів.\\n• Професійні матеріали: Безкоштовно надсилаємо преміальний Sample Box зі зразками тканин.\\n• Супровід «під ключ»: Наш технолог візьме на себе всі заміри, прасування та застеляння на об'єкті."
+            },
+            "ru": {
+              "title": "Профессиональные возможности для дизайнеров и архитекторов",
+              "subtitle": "Сотрудничество, которое подчеркнет статус ваших проектов",
+              "body": "• Партнерские программы: Персональное агентское вознаграждение или индивидуальные скидки для клиентов.\\n• Профессиональные материалы: Бесплатно отправляем премиальный Sample Box с образцами тканей.\\n• Сопровождение «под ключ»: Наш технолог возьмет на себя замеры, глажку и застилание на объекте."
+            },
+            "en": {
+              "title": "Exclusive Opportunities for Designers & Architects",
+              "subtitle": "Partnership that Elevates the Status of Your Projects",
+              "body": "• Partnership Programs: Dedicated loyalty incentives or client-exclusive pricing.\\n• Design Support: Order our signature Fabric Sample Box with 40+ textile swatches.\\n• Turnkey Logistics: A dedicated specialist handles measurements and styling on-site."
+            }
+          }
+        },
+        {
+          "id": "slide-7",
+          "number": 7,
+          "layout": "split",
+          "image": "https://shtayer.ua/image/catalog/postelnoe-bele/MOSS/03.25place3308%20(1)%20(1)%20(1).jpg",
+          "content": {
+            "uk": {
+              "title": "Ваш надійний партнер при комплектації",
+              "subtitle": "Знімаємо з вас турботи щодо текстильного оформлення об'єкта",
+              "body": "• Персональний технолог: Повний супровід вашого замовлення від замірів ліжок на об'єкті до фінального застеляння перед здачею.\\n• Захист вашої репутації: Ви рекомендуєте продукт, який слугуватиме роками. Клієнт буде вдячний за комфорт щоночі.\\n• Спеціальні умови: Гнучка програма лояльності або агентська винагорода для дизайнерів."
+            },
+            "ru": {
+              "title": "Ваш надежный партнер при комплектации",
+              "subtitle": "Снимаем с вас заботы по текстильному оформлению объекта",
+              "body": "• Персональный технолог: Полное сопровождение вашего заказа от замеров кроватей на объекте до финальной заправки перед сдачей.\\n• Защита репутации: Вы рекомендуете продукт, который прослужит годами. Клиент будет благодарен за комфорт каждую ночь.\\n• Специальные условия: Гибкая программа лояльности или агентское вознаграждение для дизайнеров."
+            },
+            "en": {
+              "title": "Your Reliable Partner in Procurement",
+              "subtitle": "Taking Off Your Shoulders the Entire Textile Specification Process",
+              "body": "• Personal Specialist: Complete support for your order from professional on-site bed measurements to final styling before project handover.\\n• Brand Safety: You recommend a durable product that lasts for years. Your client will thank you for their nightly absolute comfort.\\n• Designer Benefits: Highly favorable partnership programs, loyalty incentives, or custom commissions."
+            }
+          }
+        },
+        {
+          "id": "slide-8",
+          "number": 8,
+          "layout": "detail",
+          "image": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=1200&auto=format&fit=crop",
+          "content": {
+            "uk": {
+              "title": "Створюймо бездоганні інтер'єри разом",
+              "subtitle": "Контактна інформація бренду Shtayer",
+              "body": "Зв'яжіться з нами для знайомства та вибору текстилю преміум-класу:\\n\\n• Електронна пошта: shtaer@ukr.net\\n• Номер телефону: +380 (95) 109 62 79\\n• Instagram: @shtayer.ua\\n• Месенджери (Viber, Telegram, WhatsApp): +380 (95) 109 62 79"
+            },
+            "ru": {
+              "title": "Создаем безупречные интерьеры вместе",
+              "subtitle": "Контакты бренда Shtayer",
+              "body": "Свяжитесь с нами для знакомства и выбора текстиля премиум-класса:\\n\\n• Электронная почта: shtaer@ukr.net\\n• Номер телефона: +380 (95) 109 62 79\\n• Instagram: @shtayer.ua\\n• Мессенджеры (Viber, Telegram, WhatsApp): +380 (95) 109 62 79"
+            },
+            "en": {
+              "title": "Let's Co-Create Impeccable Interiors",
+              "subtitle": "Shtayer Contact Details",
+              "body": "Contact us to connect and select premium textiles:\\n\\n• E-mail: shtaer@ukr.net\\n• Phone number: +380 (95) 109 62 79\\n• Instagram: @shtayer.ua\\n• Messengers (Viber, Telegram, WhatsApp): +380 (95) 109 62 79"
+            }
+          }
+        }
+      ],
+      "theme": {
+        "id": "cream",
+        "name": "Шовковий Крем (Cloud)",
+        "bgClass": "bg-[#f3f2f0]",
+        "cardBgClass": "bg-white/95 border border-[#fcceb7]/40 shadow-xl shadow-stone-200/40",
+        "textPrimaryClass": "text-[#111111]",
+        "textSecondaryClass": "text-[#555555]",
+        "accentColorClass": "text-[#bd603f]",
+        "accentBorderClass": "border-[#fcceb7]",
+        "dividerClass": "bg-[#fcceb7]/40"
+      },
+      "customLogo": null,
+      "language": "uk",
+      "socialLinks": {
+        "whatsapp": "+380951096279",
+        "telegram": "shtayer_ua",
+        "instagram": "shtayer.ua",
+        "phone": "+380951096279",
+        "website": "shtayer.ua"
+      }
+    }
+  </script>
+
+  <!-- Заголовок і вибір мови -->
+  <header class="bg-black/45 border-b border-white/10 px-4 md:px-8 py-3 flex items-center justify-between z-40 select-none">
+    <div class="flex items-center gap-2">
+      <div id="header-logo" class="flex items-center gap-2"></div>
+    </div>
+    
+    <div class="flex items-center gap-3">
+      <select id="lang-select" class="bg-stone-800 text-stone-200 text-xs rounded-lg border border-white/10 py-1.5 px-3 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer">
+        <option value="uk">Українська</option>
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- Головна сцена слайдів -->
+  <main class="flex-1 flex items-center justify-center relative p-3 md:p-6 overflow-hidden">
+    <div id="slide-stage" class="w-full max-w-5xl aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl relative border border-white/5 bg-stone-950 flex flex-col">
+      <!-- Слайди будуть завантажені сюди динамічно -->
+    </div>
+  </main>
+
+  <!-- Панель навігації у підвалі -->
+  <footer class="bg-black/45 border-t border-white/10 px-4 md:px-8 py-3.5 flex flex-col sm:flex-row items-center justify-between z-40 text-xs text-stone-400 gap-3 select-none">
+    <div class="flex items-center gap-1.5">
+      <kbd class="px-2 py-0.5 bg-stone-800 border border-white/10 rounded font-mono text-[10px]">←</kbd>
+      <kbd class="px-2 py-0.5 bg-stone-800 border border-white/10 rounded font-mono text-[10px]">→</kbd>
+      <span id="lbl-nav-hint">Використовуйте клавіші ← / → або кнопки для навігації</span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <button id="prev-slide-btn" class="py-1.5 px-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-stone-200 transition disabled:opacity-30 disabled:pointer-events-none text-xs font-medium cursor-pointer">
+        ← Назад
+      </button>
+      <span id="slide-index-indicator" class="font-mono text-stone-300 font-semibold px-2 text-xs">
+        Слайд 1 з 8
+      </span>
+      <button id="next-slide-btn" class="py-1.5 px-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-stone-200 transition disabled:opacity-30 disabled:pointer-events-none text-xs font-medium cursor-pointer">
+        Вперед →
+      </button>
+    </div>
+
+    <div class="text-right">
+      <span>© Shtayer Premium Portfolio. All Rights Reserved.</span>
+    </div>
+  </footer>
+
+  <!-- Логіка навігації, перемикання мов та інтерактивних форм -->
+  <script>
+    const state = JSON.parse(document.getElementById('shtayer-state').textContent);
+    const slides = state.slides;
+    const theme = state.theme;
+    const customLogo = state.customLogo;
+    let currentLang = state.language;
+    const socialLinks = state.socialLinks;
+    let activeSlideIndex = 0;
+
+    const uiLabels = {
+      uk: {
+        navHint: "Використовуйте клавіші ← / → або кнопки для навігації",
+        prev: "← Назад",
+        next: "Вперед →",
+        slideIndicator: "Слайд {current} з {total}",
+        quickConnect: "Швидкий зв'язок:",
+        visitWebsite: "Перейти на сайт",
+        fullCatalog: "Переглянути весь каталог",
+        leadSuccess: "Запит успішно надіслано!",
+        leadSubmitBtn1: "Замовити Бокс Текстилю",
+        leadSubmitBtn2: "Обговорити Співпрацю",
+        leadPlaceholderName: "Ваше Ім'я",
+        leadPlaceholderPhone: "Телефон",
+        designerPartnerTitle: "Ексклюзивне Партнерство з Дизайнерами",
+        designerPartnerDesc: "Отримайте зразки преміальних тканин та буклетів безкоштовно"
+      },
+      ru: {
+        navHint: "Используйте клавиши ← / → или кнопки для навигации",
+        prev: "← Назад",
+        next: "Вперед →",
+        slideIndicator: "Слайд {current} из {total}",
+        quickConnect: "Быстрая связь:",
+        visitWebsite: "Перейти на сайт",
+        fullCatalog: "Посмотреть весь каталог",
+        leadSuccess: "Запрос успешно отправлен!",
+        leadSubmitBtn1: "Заказать Бокс Текстиля",
+        leadSubmitBtn2: "Обсудить Сотрудничество",
+        leadPlaceholderName: "Ваше Имя",
+        leadPlaceholderPhone: "Телефон",
+        designerPartnerTitle: "Эксклюзивное Партнерство с Дизайнерами",
+        designerPartnerDesc: "Получите образцы премиальных тканей и буклетов бесплатно"
+      },
+      en: {
+        navHint: "Use Arrow Left/Right keys or buttons to navigate",
+        prev: "← Previous",
+        next: "Next →",
+        slideIndicator: "Slide {current} of {total}",
+        quickConnect: "Quick Connect:",
+        visitWebsite: "Visit Website",
+        fullCatalog: "View Full Catalog",
+        leadSuccess: "Request submitted successfully!",
+    
