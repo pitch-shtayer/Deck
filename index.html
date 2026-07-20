@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shtayer Premium Textile - Презентація</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Typography Overrides based on selected theme */
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #fcfbf7;
+      color: #1c1917;
+      overflow: hidden;
+    }
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+    .font-mono {
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* Simple Slide Transition Effects */
+    .slide-wrapper {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+      z-index: 10;
+    }
+    .slide-active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 20;
+    }
+  </style>
+</head>
+<body class="h-screen w-screen flex flex-col justify-between relative overflow-hidden select-none">
+
+  <!-- Top Static Header -->
+  <header class="w-full h-16 md:h-20 border-b border-[#8c6252]/10 flex items-center justify-between px-4 sm:px-6 md:px-10 z-50 bg-[#fcfbf7]/90 backdrop-blur-md">
+    <div id="brand-logo-container">
+      <span class="text-lg md:text-xl font-serif font-semibold tracking-widest text-[#8c6252] uppercase">SHTAYER</span>
+    </div>
+    
+    <!-- Language Toggle Switcher -->
+    <div class="flex items-center gap-1 md:gap-2">
+      <button onclick="changeLanguage('uk')" id="lang-btn-uk" class="px-2 md:px-3 py-1 rounded text-xs font-semibold tracking-wider transition bg-[#8c6252] text-white">UA</button>
+      <button onclick="changeLanguage('ru')" id="lang-btn-ru" class="px-2 md:px-3 py-1 rounded text-xs font-semibold tracking-wider transition hover:bg-[#8c6252]/10 text-stone-700">RU</button>
+      <button onclick="changeLanguage('en')" id="lang-btn-en" class="px-2 md:px-3 py-1 rounded text-xs font-semibold tracking-wider transition hover:bg-[#8c6252]/10 text-stone-700">EN</button>
+    </div>
+  </header>
+
+  <!-- Main Showcase Arena -->
+  <main class="flex-1 w-full relative overflow-hidden flex flex-col bg-[#f5f2eb]">
+    <div id="presentation-stage" class="w-full h-full relative">
+      <!-- Slides will be injected dynamically here -->
+    </div>
+
+    <!-- Floating Overlay Slide Navigation Controls (Hidden on narrow screens to prevent overlap) -->
+    <button id="floating-prev-btn" class="hidden sm:flex absolute left-2 sm:left-4 md:left-6 lg:left-10 top-1/2 -translate-y-1/2 z-40 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/40 hover:bg-black/75 border border-white/10 text-white items-center justify-center transition-all duration-300 disabled:opacity-0 disabled:pointer-events-none cursor-pointer shadow-lg backdrop-blur-xs select-none" title="Previous Slide">
+      <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
+    </button>
+    <button id="floating-next-btn" class="hidden sm:flex absolute right-2 sm:right-4 md:right-6 lg:right-10 top-1/2 -translate-y-1/2 z-40 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/40 hover:bg-black/75 border border-white/10 text-white items-center justify-center transition-all duration-300 disabled:opacity-0 disabled:pointer-events-none cursor-pointer shadow-lg backdrop-blur-xs select-none" title="Next Slide">
+      <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+    </button>
+  </main>
+
+  <!-- Unified Bottom Navigation Utility Rail -->
+  <footer class="w-full h-14 border-t border-[#8c6252]/10 flex items-center justify-between px-4 sm:px-6 md:px-10 z-50 bg-[#fcfbf7]/90 backdrop-blur-md">
+    <!-- Active Slide indicator info -->
+    <div id="slide-indicator" class="text-[11px] md:text-xs font-mono font-medium text-[#8c6252]">
+      СЛАЙД 1 З 8
+    </div>
+
+    <!-- Manual Quick Navigation Carousel Buttons -->
+    <div class="flex items-center gap-1.5 md:gap-3">
+      <button onclick="prevSlide()" id="footer-prev-btn" class="px-2.5 py-1 rounded border border-[#8c6252]/20 hover:bg-[#8c6252]/10 text-[#8c6252] text-xs font-medium tracking-wide transition cursor-pointer select-none">Назад</button>
+      <button onclick="nextSlide()" id="footer-next-btn" class="px-2.5 py-1 rounded border border-[#8c6252]/20 hover:bg-[#8c6252]/10 text-[#8c6252] text-xs font-medium tracking-wide transition cursor-pointer select-none">Далі</button>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Runtime Model -->
+  <script>
+    // Embedded Active Slide Data Matrix
+    const slides = [{"id":"slide-1","number":1,"layout":"full-bleed","image":"https://shtayer.ua/image/catalog/postelnoe-bele/balmy/86.jpg","content":{"uk":{"title":"Філософія Сну та Комфорту","subtitle":"SHTAYER • ПРЕМІУМ ТЕКСТИЛЬ ДЛЯ ДОМУ","body":"Ласкаво просимо у світ, де кожна нитка виткана з турботою про ваш відпочинок. Ми створюємо преміальну постільну білизну та домашній текстиль, поєднуючи багатовікові традиції швейної майстерності з інноваційними екологічними матеріалами.\n\nНаша місія — подарувати вам бездоганну якість сну та перетворити спальню на справжній оазис затишку і витонченої естетики."},"ru":{"title":"Философия Сна и Комфорта","subtitle":"SHTAYER • ПРЕМИУМ ТЕКСТИЛЬ ДЛЯ ДОМА","body":"Добро пожаловать в мир, где каждая нить соткана с заботой о вашем отдыхе. Мы создаем премиальное постельное белье и домашний текстиль, сочетая многовековые традиции швейного мастерства с инновационными экологичными материалами.\n\nНаша миссия — подарить вам безупречное качество сна и превратить спальню в настоящий оазис уюта и утонченной эстетики."},"en":{"title":"Philosophy of Sleep and Comfort","subtitle":"SHTAYER • PREMIUM HOME TEXTILE","body":"Welcome to a world where every thread is woven with care for your relaxation. We create premium bedding and home textiles, blending centuries-old sewing traditions with innovative eco-friendly materials.\n\nOur mission is to grant you flawless sleep quality and transform your bedroom into a true sanctuary of coziness and refined aesthetics."}}},{"id":"slide-2","number":2,"layout":"split","image":"https://shtayer.ua/image/catalog/sorochka%20perkal/223-min.jpg","content":{"uk":{"title":"Мистецтво Деталей","subtitle":"01 / МАТЕРІАЛИ ТА ВИРОБНИЦТВО","body":"Ми ретельно відбираємо тканини від найкращих світових виробників:\n\n• Довговолокниста єгипетська бавовна — неймовірна м'якість та шовковистий блиск.\n• Тенсель (волокно евкаліпта) — природна терморегуляція та гіпоалергенність.\n• Натуральний пом'якшений льон — автентична текстура, що дихає.\n\nВласне високотехнологічне виробництво дозволяє контролювати кожен стібок, гарантуючи довговічність і бездоганний вигляд кожного виробу."},"ru":{"title":"Искусство Деталей","subtitle":"01 / МАТЕРИАЛЫ И ПРОИЗВОДСТВО","body":"Мы тщательно отбираем ткани от ведущих мировых производителей:\n\n• Длинноволокнистый египетский хлопок — невероятная мягкость и шелковистый блеск.\n• Тенсель (эвкалиптовое волокно) — природная терморегуляция и гипоаллергенность.\n• Натуральный умягченный лен — аутентичная, дышащая текстура.\n\nСобственное высокотехнологичное производство позволяет контролировать каждый стежок, гарантируя долговечность и безупречный вид каждого изделия."},"en":{"title":"The Art of Details","subtitle":"01 / MATERIALS & PRODUCTION","body":"We meticulously source fabrics from the world's leading mills:\n\n• Long-staple Egyptian Cotton — incredible softness and silky luster.\n• Tencel (Eucalyptus Fiber) — natural temperature regulation and hypoallergenic properties.\n• Natural Washed Linen — authentic, breathable texture.\n\nOur in-house, high-tech manufacturing enables strict control over every single stitch, guaranteeing durability and an impeccable look for every product."}}},{"id":"slide-3","number":3,"layout":"split","image":"https://shtayer.ua/image/catalog/postelnoe-bele/flat%20grey/img19086-min.jpg","content":{"uk":{"title":"Ексклюзивні Колекції","subtitle":"02 / АСОРТИМЕНТ БРЕНДУ","body":"Shtayer пропонує комплексні рішення для оформлення інтер'єру:\n\n• Колекція Balmy — постільна білизна з королівського сатину з витонченим мереживом та вишивкою.\n• Лінійка Bamboo — халати та домашній одяг з бамбукового волокна, що дарують ніжність шкірі.\n• Ковдри та подушки — з наповнювачами з кашеміру, шовку та гусячого пуху преміум-класу для ідеального мікроклімату."},"ru":{"title":"Эксклюзивные Коллекции","subtitle":"02 / АССОРТИМЕНТ БРЕНДА","body":"Shtayer предлагает комплексные решения для оформления интерьера:\n\n• Коллекция Balmy — постельное белье из королевского сатина с изящным кружевом и вышивкой.\n• Линейка Bamboo — халаты и домашняя одежда из бамбукового волокна, дарящие нежность коже.\n• Одеяла и подушки — с наполнителями из кашемира, шелка и гусиного пуха премиум-класса для идеального микроклимата."},"en":{"title":"Exclusive Collections","subtitle":"02 / BRAND RANGE","body":"Shtayer offers comprehensive solutions for your interior design:\n\n• Balmy Collection — royal sateen bed linen embellished with delicate lace and custom embroidery.\n• Bamboo Line — robes and loungewear made from premium bamboo fibers that soothe your skin.\n• Pillows & Duvets — filled with selected cashmere, organic silk, or premium goose down for an ideal sleep microclimate."}}},{"id":"slide-5","number":4,"layout":"grid","image":"https://shtayer.ua/image/catalog/postelnoe-bele/MOSS/03.25place3308%20(1)%20(1)%20(1).jpg","content":{"uk":{"title":"Співпраця з Професіоналами","subtitle":"03 / ДЛЯ ДИЗАЙНЕРІВ ТА АРХІТЕКТОРІВ","body":"Ми пропонуємо особливі умови для дизайнерів інтер'єру, декораторів та архітекторів:\n\n• Індивідуальне пошиття за нестандартними розмірами та ескізами.\n• Брендування виробів (вишивка ініціалів, сімейних гербів або логотипів).\n• Надання зразків тканин (Shtayer Fabric Sample Box) для демонстрації замовникам.\n• Спеціальна партнерська дисконтна програма та персональний менеджер."},"ru":{"title":"Сотрудничество с Профессионалами","subtitle":"03 / ДЛЯ ДИЗАЙНЕРОВ И АРХИТЕКТОРОВ","body":"Мы предлагаем особые условия для дизайнеров интерьера, декораторов и архитекторов:\n\n• Индивидуальный пошив по нестандартным размерам и эскизам.\n• Брендирование изделий (вышивка инициалов, семейных гербов или логотипов).\n• Предоставление образцов тканей (Shtayer Fabric Sample Box) для демонстрации заказчикам.\n• Специальная партнерская дисконтная программа и персональный менеджер."},"en":{"title":"Partnership with Professionals","subtitle":"03 / FOR DESIGNERS & ARCHITECTS","body":"We offer tailored cooperation terms for interior designers, decorators, and architects:\n\n• Bespoke tailoring according to non-standard dimensions and personal sketches.\n• Fine product branding (custom embroidery of initials, family crests, or corporate logos).\n• Complimentary fabric samples (Shtayer Fabric Sample Box) for presentation to your clients.\n• Premium partnership discount structure and a dedicated account manager."}}},{"id":"slide-6","number":5,"layout":"detail","image":"https://shtayer.ua/image/catalog/postelnoe-bele/balmy/86.jpg","content":{"uk":{"title":"Отримайте свій Sample Box","subtitle":"04 / ПАРТНЕРСЬКИЙ НАБІР ТКАНИН","body":"Бажаєте оцінити бездоганну якість сатину, тенселю та льону від бренду Shtayer?\n\nЗаповніть коротку форму, щоб безкоштовно отримати фірмовий каталог із живими зразками наших преміальних тканин для ваших майбутніх проектів."},"ru":{"title":"Получите свой Sample Box","subtitle":"04 / ПАРТНЕРСКИЙ НАБОР ТКАНЕЙ","body":"Хотите лично оценить безупречное качество сатина, тенселя и льна от бренда Shtayer?\n\nЗаполните короткую форму, чтобы бесплатно получить фирменный каталог с живыми образцами наших премиальных тканей для ваших будущих проектов."},"en":{"title":"Order Your Sample Box","subtitle":"04 / EXQUISITE FABRIC SAMPLES","body":"Would you like to personally experience the flawless quality of sateen, tencel, and linen by Shtayer?\n\nComplete the brief form below to receive your complimentary branded catalog containing physical fabric samples for your upcoming interior design projects."}}},{"id":"slide-8","number":6,"layout":"split","image":"https://shtayer.ua/image/catalog/sorochka%20perkal/223-min.jpg","content":{"uk":{"title":"Давайте створимо затишок разом","subtitle":"SHTAYER • КОНТАКТНА ІНФОРМАЦІЯ","body":"Зв'яжіться з нами для знайомства та вибору текстилю преміум-класу:\n\n• Електронна пошта: shtaer@ukr.net\n• Номер телефону: +380 (95) 109 62 79\n• Instagram: @shtayer.ua\n• Месенджери (Viber, Telegram, WhatsApp): +380 (95) 109 62 79"},"ru":{"title":"Давайте создадим уют вместе","subtitle":"SHTAYER • КОНТАКТНАЯ ИНФОРМАЦИЯ","body":"Свяжитесь с нами для знакомства и выбора текстиля премиум-класса:\n\n• Электронная почта: shtaer@ukr.net\n• Номер телефону: +380 (95) 109 62 79\n• Instagram: @shtayer.ua\n• Мессенджеры (Viber, Telegram, WhatsApp): +380 (95) 109 62 79"},"en":{"title":"Let's create comfort together","subtitle":"SHTAYER • CONTACT INFORMATION","body":"Contact us to connect and select premium textiles:\n\n• E-mail: shtaer@ukr.net\n• Phone number: +380 (95) 109 62 79\n• Instagram: @shtayer.ua\n• Messengers (Viber, Telegram, WhatsApp): +380 (95) 109 62 79"}}}];
+    const theme = {"id":"cream","name":"Premium Cream","cardBgClass":"bg-[#fcfbf7] border-[#8c6252]/10","textPrimaryClass":"text-[#4a3525]","textSecondaryClass":"text-stone-600","accentColorClass":"text-[#bd603f]","accentBgClass":"bg-[#bd603f] hover:bg-[#a54c2d]","dividerClass":"bg-[#8c6252]/20","bodyBg":"#f5f2eb"};
+    const customLogo = null;
+    let currentLang = "uk";
+    const socialLinks = {"instagram":"https://instagram.com/shtayer.ua","whatsapp":"380951096279","telegram":"shtayer_ua","website":"https://shtayer.ua","phone":"+380951096279"};
+    let activeSlideIndex = 0;
+    let leadFormExpanded = false;
+    let leadFormSubmitted = false;
+    let leadFormChoice = null;
+    let lastSlideId = "";
+
+    // Translation Pack
+    const uiLabels = {
+      uk: {
+        slideNo: "Слайд",
+        of: "з",
+        designerPartnerTitle: "Для Дизайнерів та Архітекторів",
+        designerPartnerDesc: "Введіть ваші контакти для отримання персонального партнерського каталогу тканин",
+        leadPlaceholderName: "Ваше ім'я",
+        leadPlaceholderPhone: "Номер телефону (Viber / Telegram)",
+        leadSubmitBtn1: "Отримати Sample Box",
+        leadSubmitBtn2: "Замовити консультацію",
+        leadSuccess: "Запит успішно надіслано! Ми зв'яжемося з вами найближчим часом.",
+        back: "Назад",
+        next: "Далі"
+      },
+      ru: {
+        slideNo: "Слайд",
+        of: "из",
+        designerPartnerTitle: "Для Дизайнеров и Архитекторов",
+        designerPartnerDesc: "Введите ваши контакты для получения персонального партнерского каталога тканей",
+        leadPlaceholderName: "Ваше имя",
+        leadPlaceholderPhone: "Номер телефона (Viber / Telegram)",
+        leadSubmitBtn1: "Получить Sample Box",
+        leadSubmitBtn2: "Заказать консультацию",
+        leadSuccess: "Запрос успешно отправлен! Мы свяжемся с вами в ближайшее время.",
+        back: "Назад",
+        next: "Далее"
+      },
+      en: {
+        slideNo: "Slide",
+        of: "of",
+        designerPartnerTitle: "For Designers & Architects",
+        designerPartnerDesc: "Enter your contact details to receive a premium fabric sample book",
+        leadPlaceholderName: "Your name",
+        leadPlaceholderPhone: "Phone number (WhatsApp / Telegram)",
+        leadSubmitBtn1: "Order Sample Box",
+        leadSubmitBtn2: "Get Consultation",
+        leadSuccess: "Request sent successfully! We will contact you shortly.",
+        back: "Back",
+        next: "Next"
+      }
+    };
+
+    // Helper functions
+    function changeLanguage(lang) {
+      currentLang = lang;
+      
+      // Update header buttons styling
+      document.getElementById('lang-btn-uk').className = `px-2 md:px-3 py-1 rounded text-xs font-semibold tracking-wider transition ${currentLang === 'uk' ? 'bg-[#8c6252] text-white' : 'hover:bg-[#8c6252]/10 text-stone-700'}`;
+      document.getElementById('lang-btn-ru').className = `px-2 md:px-3 py-1 rounded text-xs font-semibold tracking-wider transition ${currentLang === 'ru' ? 'bg-[#8c6252] text-white' : 'hover:bg-[#8c6252]/10 text-stone-700'}`;
+      document.getElementById('lang-btn-en').className = `px-2 md:px-3 py-1 rounded text-xs font-semibold tracking-wider transition ${currentLang === 'en' ? 'bg-[#8c6252] text-white' : 'hover:bg-[#8c6252]/10 text-stone-700'}`;
+      
+      renderSlide();
+      updateLabels();
+    }
+
+    function updateLabels() {
+      const texts = uiLabels[currentLang];
+      document.getElementById('footer-prev-btn').innerText = texts.back;
+      document.getElementById('footer-next-btn').innerText = texts.next;
+    }
+
+    function renderInteractiveWidgets(slide) {
+      const texts = uiLabels[currentLang];
+      
+      if (slide.id === "slide-6") {
+        if (!leadFormSubmitted) {
+          if (!leadFormExpanded) {
+            return `
+              <div class="mt-4 border-t pt-4 border-stone-200/20">
+                <div 
+                  onclick="expandLeadForm()"
+                  class="bg-stone-950 border border-[#bd603f]/30 hover:border-[#bd603f]/60 p-4 rounded-xl shadow-2xl max-w-lg cursor-pointer transition-all duration-300 transform hover:scale-[1.01] group flex items-center justify-between gap-4"
+                >
+                  <h4 class="text-xs md:text-sm font-sans font-medium tracking-wide text-[#bd603f] group-hover:text-[#db7854] transition duration-300">
+                    ${currentLang === "uk" ? "Отримати sample box або консультацію" : currentLang === "ru" ? "Получить sample box или консультацию" : "Get sample box or consultation"}
+                  </h4>
+                  <div class="flex-shrink-0 w-6 h-6 rounded-full border border-[#bd603f]/20 flex items-center justify-center text-[#bd603f] group-hover:bg-[#bd603f]/10 transition duration-300">
+                    <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            `;
+          } else {
+            return `
+              <div class="mt-4 border-t pt-4 border-stone-200/20 max-w-lg bg-stone-950 border border-[#bd603f]/20 p-4 rounded-xl shadow-2xl text-stone-200 font-sans">
+                <div class="flex justify-end mb-2">
+                  <button 
+                    onclick="collapseLeadForm()"
+                    class="text-stone-400 hover:text-white transition p-1 rounded-full hover:bg-stone-900 cursor-pointer"
+                  >
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="space-y-3">
+                  <div>
+                    <label class="block text-[9px] font-semibold uppercase tracking-wider text-stone-400 mb-1">
+                      ${currentLang === "uk" ? "Ваше ім'я" : currentLang === "ru" ? "Ва
