@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHTAYER Premium Presentation</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Smooth transitions and custom classes */
+    .slide-enter-active {
+      animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(1.02) translateY(5px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .slide-wrapper {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    /* Custom Hide Scrollbar */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-stone-950 text-stone-100 font-sans min-h-screen flex flex-col justify-between overflow-hidden select-none">
+
+  <!-- Top Navigation & Brand Header -->
+  <header class="w-full py-4 px-4 sm:px-6 md:px-8 border-b border-stone-800/40 bg-stone-950/80 backdrop-blur-md z-50 flex items-center justify-between shrink-0">
+    <!-- Interactive SHTAYER Brand Stamp / Logo Container -->
+    <div id="brand-logo-container" class="cursor-pointer transition-transform duration-300 active:scale-95">
+      <!-- Will render dynamically via JS -->
+    </div>
+
+    <!-- Active State & Navigation Indicators -->
+    <div class="flex items-center gap-3 md:gap-5">
+      <span class="font-mono text-[10px] md:text-xs text-stone-500 tracking-widest uppercase bg-stone-900/80 px-2.5 py-1 rounded-full border border-stone-800/40">
+        Slide <span id="current-slide-num" class="text-amber-500 font-semibold">1</span> / <span id="total-slides-num">7</span>
+      </span>
+      <div class="hidden sm:flex gap-1" id="slide-dots-container">
+        <!-- Dots rendered via JS -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Presentation Stage Canvas Area -->
+  <main class="flex-1 w-full relative overflow-hidden flex items-center justify-center bg-stone-950 px-3 py-4 sm:p-6 md:p-8">
+    <div id="presentation-stage" class="w-full max-w-5xl h-[72vh] md:h-[75vh] bg-stone-900/30 rounded-2xl md:rounded-3xl border border-stone-800/50 shadow-2xl overflow-hidden relative flex items-center justify-center">
+      <!-- Active slide contents are rendered dynamically on load -->
+    </div>
+
+    <!-- Floating Overlay Slide Navigation Controls (Always clickable, responsive & visible on all screen sizes) -->
+    <button id="floating-prev-btn" class="flex absolute left-2 sm:left-4 md:left-6 lg:left-10 top-1/2 -translate-y-1/2 z-40 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/40 hover:bg-black/75 border border-white/10 text-white items-center justify-center transition-all duration-300 disabled:opacity-20 disabled:pointer-events-none cursor-pointer shadow-lg backdrop-blur-sm select-none" title="Previous Slide">
+      <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
+    </button>
+    <button id="floating-next-btn" class="flex absolute right-2 sm:right-4 md:right-6 lg:right-10 top-1/2 -translate-y-1/2 z-40 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/40 hover:bg-black/75 border border-white/10 text-white items-center justify-center transition-all duration-300 disabled:opacity-20 disabled:pointer-events-none cursor-pointer shadow-lg backdrop-blur-sm select-none" title="Next Slide">
+      <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+    </button>
+  </main>
+
+  <!-- Interactive Slide Controls & Utility Bar -->
+  <footer class="w-full py-4 px-4 sm:px-6 md:px-8 border-t border-stone-800/40 bg-stone-950/90 backdrop-blur-md z-50 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0 shrink-0 select-none">
+    <div class="flex items-center gap-3">
+      <!-- Play/Pause Autoplay Show -->
+      <button id="autoplay-btn" class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-stone-900 border border-stone-800 hover:bg-stone-800/70 text-xs text-stone-300 transition-all active:scale-95 cursor-pointer">
+        <svg id="autoplay-icon" class="w-3.5 h-3.5 text-amber-500" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <span id="autoplay-text">Автопрогравання</span>
+      </button>
+
+      <!-- Speed Control Option -->
+      <select id="autoplay-speed" class="bg-stone-900 border border-stone-800 text-stone-300 text-xs rounded-lg px-2 py-1.5 focus:ring-1 focus:ring-amber-500 focus:outline-none cursor-pointer">
+        <option value="4000">4 сек</option>
+        <option value="6000" selected>6 сек</option>
+        <option value="9000">9 сек</option>
+      </select>
+    </div>
+
+    <!-- Active Theme Stamp indicator -->
+    <div class="flex items-center gap-4">
+      <span class="text-[10px] md:text-xs text-stone-500 font-mono tracking-wider flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        SHTAYER DIGITAL HUB
+      </span>
+      <div class="text-stone-600 text-xs">|</div>
+      <!-- Logo Switch / Custom Brand Logo Upload Simulation info -->
+      <span class="text-[10px] md:text-xs text-stone-400 font-medium">
+        Преміум-колекція 2026
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    // Embedded Presentation Data Model (Synchronized & Perfect state)
+    const slidesData = [
+      {
+        id: "slide_1",
+        title: "SHTAYER",
+        subtitle: "Екологічний текстиль преміум-класу",
+        description: "Шляхетність натурального льону, бамбуку та вовни для створення бездоганного затишку у вашому домі.",
+        image: "https://images.unsplash.com/photo-1608615621277-ac9b16f39cf7?q=80&w=1200&auto=format&fit=crop",
+        layout: "split-left",
+        widgets: ["brand-features"],
+        theme: "emerald"
+      },
+      {
+        id: "slide_2",
+        title: "Філософія бренду",
+        subtitle: "Повернення до витоків природи",
+        description: "Ми створюємо більше ніж текстиль. Ми даруємо відчуття дотику справжньої природи, де кожна ниточка дихає чистотою та турботою про ваше здоров'я.",
+        image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop",
+        layout: "split-right",
+        widgets: ["eco-stats"],
+        theme: "sand"
+      },
+      {
+        id: "slide_3",
+        title: "Колекція подушок",
+        subtitle: "Ортопедична підтримка та комфорт",
+        description: "Подушки нового покоління з натуральними наповнювачами. Ідеальна терморегуляція, антиалергенні властивості та підтримка шийного відділу.",
+        image: "https://shtayer.ua/image/catalog/podushki/firm/Capture%20One%20Catalog4151-min.jpg",
+        layout: "full-visual",
+        widgets: ["interactive-pillow-selector"],
+        theme: "emerald"
+      },
+      {
+        id: "slide_4",
+        title: "Органічні ковдри",
+        subtitle: "Тепло, створене самою природою",
+        description: "Ковдри з кашеміру, евкаліптового волокна та бамбуку. Легкі як хмаринка, але надзвичайно теплі та затишні.",
+        image: "https://shtayer.ua/image/catalog/odeyalo/CASHMERE/Capture%20One%20Catalog4352-min.jpg",
+        layout: "split-left",
+        widgets: ["materials-grid"],
+        theme: "linen"
+      },
+      {
+        id: "slide_5",
+        title: "Бамбуковий домашній одяг",
+        subtitle: "М'якість, на яку ви заслуговуєте",
+        description: "Халати та костюми з бамбукового волокна. Неймовірно приємні до тіла, швидко вбирають вологу та дарують відчуття свіжості.",
+        image: "https://shtayer.ua/image/catalog/home%20wear%20bamboo/robe%20sand/IMG_1143.jpg",
+        layout: "split-right",
+        widgets: ["interactive-sizes"],
+        theme: "sand"
+      },
+      {
+        id: "slide_6",
+        title: "Калькулятор замовлення",
+        subtitle: "Розрахуйте індивідуальну вартість",
+        description: "Оберіть параметри та матеріали, щоб дізнатися попередню ціну вашого ідеального комплекту.",
+        image: "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1200&auto=format&fit=crop",
+        layout: "split-left",
+        widgets: ["order-calculator"],
+        theme: "linen"
+      },
+      {
+        id: "slide_7",
+        title: "Зв'яжіться з нами",
+        subtitle: "Створіть свій затишок вже сьогодні",
+        description: "Залиште ваші контакти, і наш дизайнер допоможе підібрати текстиль, який ідеально підійде до вашого інтер'єру.",
+        image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop",
+        layout: "full-visual",
+        widgets: ["contact-form"],
+        theme: "emerald"
+      }
+    ];
+
+    // Design Themes Configuration
+    const themes = {
+      emerald: {
+        bgClass: "bg-stone-950",
+        cardBgClass: "bg-stone-900/90",
+        textPrimaryClass: "text-amber-100",
+        textSecondaryClass: "text-stone-300",
+        accentClass: "text-amber-500",
+        borderClass: "border-amber-500/20",
+        accentBgClass: "bg-amber-500",
+        accentHoverBgClass: "hover:bg-amber-600",
+        indicatorColor: "#f59e0b"
+      },
+      sand: {
+        bgClass: "bg-stone-950",
+        cardBgClass: "bg-amber-950/20",
+        textPrimaryClass: "text-amber-200",
+        textSecondaryClass: "text-amber-100/80",
+        accentClass: "text-amber-400",
+        borderClass: "border-amber-400/20",
+        accentBgClass: "bg-amber-500",
+        accentHoverBgClass: "hover:bg-amber-600",
+        indicatorColor: "#fbbf24"
+      },
+      linen: {
+        bgClass: "bg-stone-950",
+        cardBgClass: "bg-stone-900/80",
+        textPrimaryClass: "text-stone-100",
+        textSecondaryClass: "text-stone-300",
+        accentClass: "text-amber-500",
+        borderClass: "border-stone-800",
+        accentBgClass: "bg-amber-500",
+        accentHoverBgClass: "hover:bg-amber-600",
+        indicatorColor: "#f59e0b"
+      }
+    };
+
+    // State Variables
+    let currentSlideIndex = 0;
+    let customLogo = ""; // Optional Base64 uploaded logo
+    let autoplayInterval = null;
+    let isAutoplayRunning = false;
+    let autoplaySpeedMs = 6000;
+
+    // Pillow selector state
+    let selectedPillowId = "pillow_silk";
+    // Interactive sizes state
+    let selectedSize = "M";
+    // Calculator States
+    let calcItem = "pillow";
+    let calcMaterial = "bamboo";
+    let calcQty = 1;
+    // Contact Form States
+    let contactName = "";
+    let contactPhone = "";
+    let contactSubmitted = false;
+
+    // DOM Elements Cache
+    const stage = document.getElementById("presentation-stage");
+    const prevBtn = document.getElementById("floating-prev-btn");
+    const nextBtn = document.getElementById("floating-next-btn");
+    const currentNumSpan = document.getElementById("current-slide-num");
+    const totalNumSpan = document.getElementById("total-slides-num");
+    const dotsContainer = document.getElementById("slide-dots-container");
+    const logoContainer = document.getElementById("brand-logo-container");
+    const autoplayBtn = document.getElementById("autoplay-btn");
+    const autoplayText = document.getElementById("autoplay-text");
+    const autoplayIcon = document.getElementById("autoplay-icon");
+    const speedSelect = document.getElementById("autoplay-speed");
+
+    // Embed SHTAYER Monogram Brand Signature logo
+    function renderLogo() {
+      if (customLogo) {
+        logoContainer.innerHTML = '<img src="' + customLogo + '" referrerpolicy="no-referrer" alt="Brand Logo" class="h-8 object-contain max-w-[130px]">';
+      } else {
+        logoContainer.innerHTML = `
+          <div class="flex items-center gap-2">
+            <svg class="w-6 h-8 text-amber-500" viewBox="0 0 40 50" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M10 10 C 20 5, 30 5, 30 15 C 30 25, 10 20, 10 32 C 10 42, 25 45, 30 38" stroke-linecap="round"/>
+              <path d="M5 25 L35 25" stroke-dasharray="2 3"/>
+            </svg>
+            <div class="flex flex-col text-left">
+              <span class="text-sm font-semibold tracking-widest text-amber-100 uppercase leading-none">SHTAYER</span>
+              <span class="text-[9px] text-stone-500 font-mono tracking-widest uppercase">E C O - L U X U R Y</span>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Render Navigation Dots
+    function renderDots() {
+      dotsContainer.innerHTML = "";
+      slidesData.forEach((_, idx) => {
+        const dot = document.createElement("button");
+        dot.className = `w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${idx === currentSlideIndex ? 'bg-amber-500 w-6' : 'bg-stone-700 hover:bg-stone-500'}`;
+        dot.addEventListener("click", () => navigateToSlide(idx));
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    // Interactive Widget Content Builders
+    function renderInteractiveWidgets(slide) {
+      if (!slide.widgets || slide.widgets.length === 0) return "";
+      const widgetType = slide.widgets[0];
+
+      if (widgetType === "brand-features") {
+        return `
+          <div class="grid grid-cols-2 gap-3 mt-6">
+            <div class="p-3 bg-stone-950/40 border border-stone-800/40 rounded-xl">
+              <span class="text-amber-500 font-serif text-lg font-bold">100%</span>
+              <p class="text-[10px] sm:text-xs text-stone-400 mt-1">Органічна сировина</p>
+            </div>
+            <div class="p-3 bg-stone-950/40 border border-stone-800/40 rounded-xl">
+              <span class="text-amber-500 font-serif text-lg font-bold">Safe</span>
+              <p class="text-[10px] sm:text-xs text-stone-400 mt-1">Гіпоалергенно</p>
+            </div>
+          </div>
+        `;
+      }
+
+      if (widgetType === "eco-stats") {
+        return `
+          <div class="mt-6 border-t border-amber-500/10 pt-4">
+            <div class="flex justify-between items-center text-xs mb-1">
+              <span class="text-amber-200/80">Енергозбереження виробництва</span>
+              <span class="text-amber-400 font-mono font-medium">85%</span>
+            </div>
+            <div class="w-full bg-stone-950 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-amber-500 h-1.5 rounded-full" style="width: 85%"></div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (widgetType === "interactive-pillow-selector") {
+        const pillows = [
+          { id: "pillow_silk", label: "Класична бамбукова", desc: "Гіпоалергенний чохол, регульована висота.", price: "1250 грн" },
+          { id: "pillow_eco", label: "Преміум шовкова", desc: "Елітний наповнювач з шовку тутового шовкопряда.", price: "2800 грн" },
+          { id: "pillow_memory", label: "Ортопедична вовняна", desc: "Ефект делікатної ортопедичної підтримки.", price: "1850  грн" }
+        ];
+
+        let selectHtml = `<div class="space-y-2 mt-4 max-w-sm">`;
+        pillows.forEach(p => {
+          const isSelected = p.id === selectedPillowId;
+          selectHtml += `
+            <div onclick="window.selectPillow('${p.id}')" class="p-3 rounded-xl border transition-all duration-300 cursor-pointer text-left ${isSelected ? 'bg-amber-500/10 border-amber-500 text-amber-100' : 'bg-stone-950/40 border-stone-800 hover:bg-stone-900/60 text-stone-400'}">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-semibold ${isSelected ? 'text-amber-400' : 'text-stone-300'}">${p.label}</span>
+                <span class="text-xs font-mono font-bold text-amber-500">${p.price}</span>
+              </div>
+              <p class="text-[10px] text-stone-400 mt-1">${p.desc}</p>
+            </div>
+          `;
+        });
+        selectHtml += `</div>`;
+        return selectHtml;
+      }
+
+      if (widgetType === "materials-grid") {
+        return `
+          <div class="grid grid-cols-3 gap-2 mt-5">
+            <div class="p-2 bg-stone-950/40 rounded-xl border border-stone-800 text-center">
+              <span class="block text-xs font-semibold text-stone-300">Кашемір</span>
+              <span class="text-[9px] text-amber-500 font-mono">Зимовий затишок</span>
+            </div>
+            <div class="p-2 bg-stone-950/40 rounded-xl border border-stone-800 text-center">
+              <span class="block text-xs font-semibold text-stone-300">Бамбук</span>
+              <span class="text-[9px] text-amber-500 font-mono">Прохолода влітку</span>
+            </div>
+            <div class="p-2 bg-stone-950/40 rounded-xl border border-stone-800 text-center">
+              <span class="block text-xs font-semibold text-stone-300">Шовк</span>
+              <span class="text-[9px] text-amber-500 font-mono">Ніжний блиск</span>
+            </div>
+          </div>
+        `;
+      }
+
+      if (widgetType === "interactive-sizes") {
+        const sizes = ["S", "M", "L", "XL"];
+        let sizesHtml = `
+          <div class="mt-4">
+            <span class="text-[10px] text-stone-400 uppercase tracking-widest">Оберіть розмір халата:</span>
+            <div class="flex gap-2 mt-2">
+        `;
+        sizes.forEach(s => {
+          const isSelected = s === selectedSize;
+          sizesHtml += `
+            <button onclick="window.selectSize('${s}')" class="w-10 h-10 rounded-lg text-xs font-mono font-semibold transition-all ${isSelected ? 'bg-amber-500 text-stone-950 font-bold scale-105' : 'bg-stone-900 text-stone-400 border border-stone-800 hover:bg-stone-800'}">
+              ${s}
+            </button>
+          `;
+        });
+        sizesHtml += `
+            </div>
+            <p class="text-[10px] text-stone-400 mt-2">Рекомендована довжина: ${selectedSize === 'S' ? '110' : selectedSize === 'M' ? '118' : selectedSize === 'L' ? '124' : '130'} см.</p>
+          </div>
+        `;
+        return sizesHtml;
+      }
+
+      if (widgetType === "order-calculator") {
+        // Compute price dynamically
+        let itemBase = calcItem === "pillow" ? 1200 : calcItem === "duvet" ? 3400 : 1800;
+        let materialCoeff = calcMaterial === "bamboo" ? 1.0 : calcMaterial === "silk" ? 1.8 : 1.3;
+        let finalPrice = Math.round(itemBase * materialCoeff * calcQty);
+
+        return `
+          <div class="mt-4 p-4 bg-stone-950/80 rounded-xl border border-stone-800 space-y-3 text-left">
+            <div>
+              <label class="text-[10px] text-stone-400 uppercase tracking-wider block mb-1">Виріб</label>
+              <select onchange="window.updateCalc('item', this.value)" class="w-full bg-stone-900 border border-stone-800 text-stone-300 text-xs rounded-lg p-1.5 focus:outline-none">
+                <option value="pillow" ${calcItem === 'pillow' ? 'selected' : ''}>Подушка преміум</option>
+                <option value="duvet" ${calcItem === 'duvet' ? 'selected' : ''}>Органічна ковдра</option>
+                <option value="robe" ${calcItem === 'robe' ? 'selected' : ''}>Бамбуковий халат</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-[10px] text-stone-400 uppercase tracking-wider block mb-1">Матеріал наповнення</label>
+              <select onchange="window.updateCalc('material', this.value)" class="w-full bg-stone-900 border border-stone-800 text-stone-300 text-xs rounded-lg p-1.5 focus:outline-none">
+                <option value="bamboo" ${calcMaterial === 'bamboo' ? 'selected' : ''}>Бамбукове волокно (Базове)</option>
+                <option value="wool" ${calcMaterial === 'wool' ? 'selected' : ''}>Мериносова вовна (+30%)</option>
+                <option value="silk" ${calcMaterial === 'silk' ? 'selected' : ''}>Елітний шовк Малбері (+80%)</option>
+              </select>
+            </div>
+            <div class="flex justify-between items-center pt-2 border-t border-stone-800">
+              <span class="text-xs text-stone-400 font-serif">Розрахункова вартість:</span>
+              <span class="text-sm font-mono font-bold text-amber-500">${finalPrice} грн</span>
+            </div>
+          </div>
+        `;
+      }
+
+      if (widgetType === "contact-form") {
+        if (contactSubmitted) {
+          return `
+            <div class="mt-4 p-4 bg-amber-500/10 border border-amber-500/40 rounded-xl text-center space-y-2">
+              <p class="text-xs font-semibold text-amber-400">Дякуємо, заявку прийнято!</p>
+              <p class="text-[10px] text-stone-400">Наш дизайнер зв'яжеться з вами найближчим часом для підбору текстилю.</p>
+            </div>
+          `;
+        }
+        return `
+          <form onsubmit="window.submitContact(event)" class="mt-4 space-y-2.5 text-left">
+            <div>
+              <input type="text" id="contact-name-input" placeholder="Ваше ім'я" required class="w-full bg-stone-900 border border-stone-800 focus:border-amber-500 focus:outline-none text-stone-300 text-xs rounded-lg px-3 py-2" />
+            </div>
+            <div>
+              <input type="tel" id="contact-phone-input" placeholder="+380" required class="w-full bg-stone-900 border border-stone-800 focus:border-amber-500 focus:outline-none text-stone-300 text-xs rounded-lg px-3 py-2" />
+            </div>
+            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold text-xs py-2 rounded-lg transition-all active:scale-95">
+              Отримати консультацію
+            </button>
+          </form>
+        `;
+      }
+
+      return "";
+    }
+
+    // Expose interactive callbacks to global window object
+    window.selectPillow = function(id) {
+      selectedPillowId = id;
+      renderCurrentSlide();
+    }
+    window.selectSize = function(size) {
+      selectedSize = size;
+      renderCurrentSlide();
+    }
+    window.updateCalc = function(key, val) {
+      if (key === "item") calcItem = val;
+      if (key === "material") calcMaterial = val;
+      renderCurrentSlide();
+    }
+    window.submitContact = function(e) {
+      e.preventDefault();
+      const nameVal = document.getElementById("contact-name-input")?.value || "";
+      const phoneVal = document.getElementById("contact-phone-input")?.value || "";
+      if (nameVal && phoneVal) {
+        contactName = nameVal;
+        contactPhone = phoneVal;
+        contactSubmitted = true;
+        renderCurrentSlide();
+      }
+    }
+
+    // Main Renderer
+    function renderCurrentSlide() {
+      const slide = slidesData[currentSlideIndex];
+      const theme = themes[slide.theme] || themes.emerald;
+
+      // Update Top Status Bar Info
+      currentNumSpan.textContent = currentSlideIndex + 1;
+      totalNumSpan.textContent = slidesData.length;
+      renderDots();
+
+      // Navigation Buttons accessibility / Visual representation
+      prevBtn.disabled = currentSlideIndex === 0;
+      nextBtn.disabled = currentSlideIndex === slidesData.length - 1;
+
+      // Card custom styling
+      const cardBg = `style="background-color: ${slide.theme === 'sand' ? 'rgba(69, 26, 3, 0.95)' : 'rgba(28, 25, 23, 0.95)'};"`;
+      const textPrimaryColor = `style="color: ${theme.accentClass === 'text-amber-500' ? '#fef3c7' : '#fef3c7'};"`;
+
+      // Build layouts
+      const content = {
+        title: slide.title,
+        subtitle: slide.subtitle,
+        description: slide.description
+      };
+
+      // Slide Monogram Stamp Branding
+      const overlayHtml = `
+        <div class="absolute top-4 left-4 z-30 flex items-center gap-1 bg-black/40 backdrop-blur-md py-1 px-2.5 rounded-full border border-white/5">
+          <svg class="w-3 h-4 text-amber-500" viewBox="0 0 40 50" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M10 10 C 20 5, 30 5, 30 15 C 30 25, 10 20, 10 32 C 10 42, 25 45, 30 38" stroke-linecap="round"/>
+          </svg>
+          <span class="text-[9px] font-mono text-stone-300 font-semibold uppercase tracking-widest">SHTAYER TEXTILE</span>
+        </div>
+      `;
+
+      let slideHtml = "";
+
+      if (slide.layout === "split-left") {
+        slideHtml = `
+          <div class="slide-wrapper slide-enter-active">
+            ${overlayHtml}
+            <div class="flex-1 w-full h-full grid grid-cols-1 md:grid-cols-12 overflow-y-auto md:overflow-hidden ${theme.cardBgClass}" ${cardBg}>
+              <div class="md:col-span-6 pt-20 pb-8 px-6 md:p-12 flex flex-col justify-start md:justify-center text-left ${theme.cardBgClass}" ${cardBg}>
+                <h2 class="text-[clamp(1.1rem,4.5vw,1.6rem)] md:text-3xl font-serif font-semibold tracking-tight mb-1.5 ${theme.textPrimaryClass}" ${textPrimaryColor}>${content.title}</h2>
+                <span class="text-[10px] sm:text-xs font-mono tracking-wider uppercase text-amber-500/90 mb-4 block font-medium">${content.subtitle}</span>
+                <p class="text-xs sm:text-sm ${theme.textSecondaryClass} leading-relaxed font-light">${content.description}</p>
+                ${renderInteractiveWidgets(slide)}
+              </div>
+              <div class="md:col-span-6 relative h-48 md:h-auto overflow-hidden shrink-0">
+                <img src="${slide.image}" referrerpolicy="no-referrer" class="w-full h-full object-cover">
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (slide.layout === "split-right") {
+        slideHtml = `
+          <div class="slide-wrapper slide-enter-active">
+            ${overlayHtml}
+            <div class="flex-1 w-full h-full grid grid-cols-1 md:grid-cols-12 overflow-y-auto md:overflow-hidden ${theme.cardBgClass}" ${cardBg}>
+              <div class="md:col-span-6 relative h-48 md:h-auto overflow-hidden shrink-0">
+                <img src="${slide.image}" referrerpolicy="no-referrer" class="w-full h-full object-cover">
+              </div>
+              <div class="md:col-span-6 pt-20 pb-8 px-6 md:p-12 flex flex-col justify-start md:justify-center text-left ${theme.cardBgClass}" ${cardBg}>
+                <h2 class="text-[clamp(1.1rem,4.5vw,1.6rem)] md:text-3xl font-serif font-semibold tracking-tight mb-1.5 ${theme.textPrimaryClass}" ${textPrimaryColor}>${content.title}</h2>
+                <span class="text-[10px] sm:text-xs font-mono tracking-wider uppercase text-amber-500/90 mb-4 block font-medium">${content.subtitle}</span>
+                <p class="text-xs sm:text-sm ${theme.textSecondaryClass} leading-relaxed font-light">${content.description}</p>
+                ${renderInteractiveWidgets(slide)}
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (slide.layout === "full-visual") {
+        // Special Grid Layout for Slide 3 & Slide 7 to contain beautiful gallery/images on left, interactive panel on right
+        if (slide.id === "slide_3") {
+          slideHtml = `
+            <div class="slide-wrapper slide-enter-active">
+              ${overlayHtml}
+              <div class="flex-1 w-full h-full grid grid-cols-1 md:grid-cols-12 overflow-y-auto md:overflow-hidden bg-stone-900/95">
+                <div class="md:col-span-7 relative grid grid-cols-2 gap-1.5 p-3 h-56 md:h-full order-2 md:order-1">
+                  <div class="relative overflow-hidden rounded-xl">
+                    <img src="${slide.image}" referrerpolicy="no-referrer" class="w-full h-full object-cover">
+                  </div>
+                  <div class="grid grid-rows-2 gap-1.5">
+                    <div class="relative overflow-hidden rounded-xl">
+                      <img src="https://shtayer.ua/image/catalog/podushki/firm/Capture%20One%20Catalog4151-min.jpg" referrerpolicy="no-referrer" class="w-full h-full object-cover">
+                    </div>
+                    <div class="relative overflow-hidden rounded-xl">
+                      <img src="https://shtayer.ua/image/catalog/home%20wear%20bamboo/robe%20sand/IMG_1143.jpg" referrerpolicy="no-referrer" class="w-full h-full object-cover">
+                    </div>
+                  </div>
+                </div>
+                <div class="md:col-span-5 pt-20 pb-8 px-6 md:p-12 flex flex-col justify-start md:justify-center text-left order-1 md:order-2">
+                  <h2 class="text-[clamp(1.1rem,4.5vw,1.6rem)] md:text-3xl font-serif font-semibold tracking-tight mb-1.5 text-amber-100">${content.title}</h2>
+                  <span class="text-[10px] sm:text-xs font-mono tracking-wider uppercase text-amber-500 mb-4 block font-medium">${content.subtitle}</span>
+                  <p class="text-xs sm:text-sm text-stone-300 leading-relaxed font-light mb-2">${content.description}</p>
+                  ${renderInteractiveWidgets(slide)}
+                </div>
+              </div>
+            </div>
+          `;
+        } else {
+          slideHtml = `
+            <div class="slide-wrapper slide-enter-active">
+              ${overlayHtml}
+              <div class="absolute inset-0 z-0">
+                <img src="${slide.image}" referrerpolicy="no-referrer" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+              </div>
+              <div class="relative z-10 w-full max-w-3xl text-left text-white bg-black/45 p-5 md:p-8 rounded-2xl backdrop-blur-md border border-white/10 m-3 md:m-6 mt-auto">
+                <h2 class="text-[clamp(1.1rem,4.5vw,1.6rem)] md:text-3xl font-serif font-semibold tracking-tight mb-1">${content.title}</h2>
+                <span class="text-[10px] sm:text-xs font-mono tracking-wider uppercase text-amber-400 mb-3 block">${content.subtitle}</span>
+                <p class="text-xs sm:text-sm text-stone-200 leading-relaxed font-light">${content.description}</p>
+                ${renderInteractiveWidgets(slide)}
+              </div>
+            </div>
+          `;
+        }
+      }
+
+      stage.innerHTML = slideHtml;
+    }
+
+    // Navigation controllers
+    function navigateToSlide(index) {
+      if (index < 0 || index >= slidesData.length) return;
+      currentSlideIndex = index;
+      renderCurrentSlide();
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < slidesData.length - 1) {
+        navigateToSlide(currentSlideIndex + 1);
+      } else {
+        // Wrap around if autoplaying
+        if (isAutoplayRunning) {
+          navigateToSlide(0);
+        }
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        navigateToSlide(currentSlideIndex - 1);
+      }
+    }
+
+    // Autoplay Controls
+    function toggleAutoplay() {
+      if (isAutoplayRunning) {
+        stopAutoplay();
+      } else {
+        startAutoplay();
+      }
+    }
+
+    function startAutoplay() {
+      isAutoplayRunning = true;
+      autoplayText.textContent = "На паузу";
+      autoplayIcon.innerHTML = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`;
+      autoplayInterval = setInterval(nextSlide, autoplaySpeedMs);
+    }
+
+    function stopAutoplay() {
+      isAutoplayRunning = false;
+      autoplayText.textContent = "Автопрогравання";
+      autoplayIcon.innerHTML = `<path d="M8 5v14l11-7z"/>`;
+      if (autoplayInterval) {
+        clearInterval(autoplayInterval);
+        autoplayInterval = null;
+      }
+    }
+
+    // Event Listeners
+    prevBtn.addEventListener("click", () => {
+      stopAutoplay();
+      prevSlide();
+    });
+    nextBtn.addEventListener("click", () => {
+      stopAutoplay();
+      nextSlide();
+    });
+    autoplayBtn.addEventListener("click", toggleAutoplay);
+
+    speedSelect.addEventListener("change", (e) => {
+      autoplaySpeedMs = parseInt(e.target.value, 10);
+      if (isAutoplayRunning) {
+        stopAutoplay();
+        startAutoplay();
+      }
+    });
+
+    // Keyboard support
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" || e.key === " ") {
+        e.preventDefault();
+        stopAutoplay();
+        nextSlide();
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        stopAutoplay();
+        prevSlide();
+      }
+    });
+
+    // Swipe Support for Touch/Mobile (Android & Chrome friendly)
+    let touchStartX = 0;
+    let touchEndX = 0;
+    stage.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    stage.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const threshold = 50;
+      if (touchStartX - touchEndX > threshold) {
+        // Swipe left -> Next slide
+        stopAutoplay();
+        nextSlide();
+      } else if (touchEndX - touchStartX > threshold) {
+        // Swipe right -> Prev slide
+        stopAutoplay();
+        prevSlide();
+      }
+    }
+
+    // Initial Bootstrap
+    renderLogo();
+    renderCurrentSlide();
+  </script>
+</body>
+</html>
