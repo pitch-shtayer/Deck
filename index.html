@@ -515,7 +515,7 @@
       localStorage.setItem('shtayer_downloaded_leads', JSON.stringify(leads));
 
       // Trigger prefilled email client
-      const email = "shtaer@ukr.net";
+      const email = "shtayer.forhotel@gmail.com";
       const subject = encodeURIComponent("Нова заявка з презентації Shtayer (Exported)");
       const body = encodeURIComponent(
         `Ім'я: ${name}
@@ -573,16 +573,16 @@
 
       if (isFullBleed) {
         slideHtml = `
-          <div class="slide-wrapper slide-enter-active">
+          <div class="slide-wrapper slide-enter-active justify-center items-center">
             ${overlayHtml}
             <div class="absolute inset-0 z-0">
-              <img src="${slide.image}" referrerpolicy="no-referrer" class="w-full h-full object-cover object-[38%_35%]">
+              <img src="${slide.image}" referrerpolicy="no-referrer" class="w-full h-full object-cover object-[center_35%]">
               <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
             </div>
-            <div class="relative z-10 w-full max-w-3xl text-left text-white bg-black/45 p-5 md:p-8 rounded-2xl backdrop-blur-md border border-white/10 m-3 md:m-6 mt-auto">
+            <div class="relative z-10 w-full max-w-3xl text-center text-white bg-black/45 p-6 md:p-8 rounded-2xl backdrop-blur-md border border-white/10 m-3 md:m-6 my-auto mx-auto">
               <h2 class="text-[clamp(1.2rem,5vw,2rem)] md:text-4xl font-serif font-semibold tracking-tight leading-tight mb-2" ${textPrimaryColor}>${content.title}</h2>
               <p class="text-[clamp(0.7rem,2.2vw,0.85rem)] md:text-lg tracking-wide text-amber-400 mb-3" ${accentStyle}>${content.subtitle}</p>
-              <div class="w-12 h-[1px] bg-amber-400/40 mb-3"></div>
+              <div class="w-12 h-[1px] bg-amber-400/40 mb-3 mx-auto"></div>
               <div class="text-[clamp(0.65rem,2vw,0.8rem)] md:text-sm text-stone-200 leading-relaxed whitespace-pre-line" ${textSecondaryColor}>${content.body}</div>
             </div>
           </div>
@@ -595,7 +595,7 @@
               <div class="md:col-span-6 relative h-48 md:h-auto overflow-hidden shrink-0">
                 <img src="${slide.image}" referrerpolicy="no-referrer" class="w-full h-full object-cover">
               </div>
-              <div class="md:col-span-6 pt-20 pb-8 px-6 md:p-12 flex flex-col justify-start md:justify-center text-left ${theme.cardBgClass}" ${cardBg}>
+              <div class="md:col-span-6 pt-14 pb-6 px-5 md:py-8 md:px-10 flex flex-col justify-center text-left overflow-y-auto ${theme.cardBgClass}" ${cardBg}>
                 <h2 class="text-[clamp(1.1rem,4.5vw,1.6rem)] md:text-3xl font-serif font-semibold tracking-tight mb-1.5 ${theme.textPrimaryClass}" ${textPrimaryColor}>${content.title}</h2>
                 <p class="text-[clamp(0.65rem,2.2vw,0.8rem)] md:text-sm font-sans tracking-widest ${theme.accentColorClass} mb-2 uppercase" ${accentStyle}>${content.subtitle}</p>
                 <div class="w-12 h-[1px] ${theme.dividerClass} mb-3"></div>
@@ -610,7 +610,7 @@
           <div class="slide-wrapper slide-enter-active">
             ${overlayHtml}
             <div class="flex-1 w-full h-full grid grid-cols-1 md:grid-cols-12 overflow-y-auto md:overflow-hidden ${theme.cardBgClass}" ${cardBg}>
-              <div class="md:col-span-7 pt-20 pb-8 px-6 md:p-12 flex flex-col justify-start md:justify-center text-left ${theme.cardBgClass} order-2 md:order-1" ${cardBg}>
+              <div class="md:col-span-7 pt-14 pb-6 px-5 md:py-8 md:px-10 flex flex-col justify-center text-left overflow-y-auto ${theme.cardBgClass} order-2 md:order-1" ${cardBg}>
                 <h2 class="text-[clamp(1.1rem,4.5vw,1.6rem)] md:text-3xl font-serif font-semibold tracking-tight mb-1.5 ${theme.textPrimaryClass}" ${textPrimaryColor}>${content.title}</h2>
                 <p class="text-[clamp(0.65rem,2.2vw,0.8rem)] md:text-sm font-sans tracking-wide ${theme.accentColorClass} mb-2" ${accentStyle}>${content.subtitle}</p>
                 <div class="w-full h-[1px] ${theme.dividerClass} mb-3"></div>
@@ -629,7 +629,7 @@
           <div class="slide-wrapper slide-enter-active">
             ${overlayHtml}
             <div class="flex-1 w-full h-full grid grid-cols-1 md:grid-cols-12 overflow-y-auto md:overflow-hidden ${theme.cardBgClass}" ${cardBg}>
-              <div class="md:col-span-5 pt-20 pb-8 px-6 md:p-12 flex flex-col justify-start md:justify-center text-left ${theme.cardBgClass} order-2 md:order-1" ${cardBg}>
+              <div class="md:col-span-5 pt-14 pb-6 px-5 md:py-8 md:px-10 flex flex-col justify-center text-left overflow-y-auto ${theme.cardBgClass} order-2 md:order-1" ${cardBg}>
                 <h2 class="text-[clamp(1.1rem,4.5vw,1.6rem)] md:text-2xl font-serif font-semibold tracking-tight mb-1.5 ${theme.textPrimaryClass}" ${textPrimaryColor}>${content.title}</h2>
                 <p class="text-[clamp(0.65rem,2.2vw,0.8rem)] md:text-sm font-sans tracking-wide ${theme.accentColorClass} mb-2" ${accentStyle}>${content.subtitle}</p>
                 <div class="w-12 h-[1px] ${theme.dividerClass} mb-3"></div>
