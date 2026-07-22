@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHTAYER — Преміальний Текстиль для Архітекторів та Дизайнерів Інтер'єру</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/shtayer-logo.svg" type="image/svg+xml" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Lora:ital,wght@0,400..700;1,400..700&family=Manrope:wght@300..700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cream: '#f3f2f0',
+              clay: '#bd603f',
+              peach: '#fcceb7',
+              dark: '#111111',
+              sage: '#899895'
+            }
+          },
+          fontFamily: {
+            serif: ['Lora', 'serif'],
+            sans: ['Manrope', 'sans-serif'],
+            script: ['Alex Brush', 'cursive']
+          },
+          boxShadow: {
+            'luxury': '0 20px 50px -10px rgba(189, 96, 63, 0.08)',
+            'subtle': '0 10px 30px 0 rgba(17, 17, 17, 0.03)',
+            'card-hover': '0 25px 60px -15px rgba(189, 96, 63, 0.12)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #f3f2f0;
+      color: #111111;
+      font-family: 'Manrope', sans-serif;
+      overflow-x: hidden;
+      letter-spacing: -0.01em;
+    }
+    
+    .font-serif {
+      font-family: 'Lora', serif;
+    }
+
+    .font-script {
+      font-family: 'Alex Brush', cursive;
+    }
+
+    /* Architectural Glassmorphism */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(252, 206, 183, 0.45);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(189, 96, 63, 0.4);
+    }
+
+    .glass-header {
+      background: rgba(243, 242, 240, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(252, 206, 183, 0.35);
+    }
+
+    /* Custom Luxury Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f3f2f0;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #fcceb7;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #bd603f;
+    }
+
+    /* Micro-interactions & Zoom */
+    .img-zoom-container {
+      overflow: hidden;
+    }
+    .img-zoom-container img {
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .img-zoom-container:hover img {
+      transform: scale(1.04);
+    }
+
+    /* Smooth focus rings */
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(189, 96, 63, 0.15);
+    }
+
+    /* Subtle luxury animated badge border */
+    @keyframes borderPulse {
+      0%, 100% { border-color: rgba(252, 206, 183, 0.8); }
+      50% { border-color: rgba(189, 96, 63, 0.5); }
+    }
+    .badge-pulse {
+      animation: borderPulse 4s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="antialiased text-[#111111] bg-[#f3f2f0] selection:bg-[#fcceb7] selection:text-[#bd603f]">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-[#111111] text-[#f3f2f0] text-xs py-2.5 px-4 text-center font-medium tracking-wide border-b border-white/10">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 flex-wrap">
+      <span class="inline-block w-1.5 h-1.5 rounded-full bg-[#bd603f]"></span>
+      <span id="topBarText" class="text-white/90">Ексклюзивна лінійка для партнерів — Безкоштовний Sample Box для архітекторов та дизайнерів</span>
+      <a href="#sample-box" class="underline ml-1 font-semibold text-[#fcceb7] hover:text-white transition duration-200">Замовити зразки &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-40 glass-header transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3.5 group shrink-0">
+        <div class="w-12 h-14 flex items-center justify-center shrink-0">
+          <img src="/shtayer-logo.svg" alt="SHTAYER Emblem" class="w-12 h-14 object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-sm" />
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif text-2xl font-bold tracking-[0.18em] text-[#111111] uppercase leading-none">SHTAYER</span>
+          <span class="text-[9px] tracking-[0.3em] text-[#899895] uppercase font-semibold mt-1">Atelier Textile</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center space-x-6 xl:space-x-8 text-xs font-semibold tracking-wider uppercase shrink-0 mx-4">
+        <a href="#philosophy" class="text-[#111111]/70 hover:text-[#bd603f] transition duration-200 nav-link py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#bd603f] hover:after:w-full after:transition-all after:duration-300" data-key="navPhilosophy">Філософія</a>
+        <a href="#atelier" class="text-[#111111]/70 hover:text-[#bd603f] transition duration-200 nav-link py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#bd603f] hover:after:w-full after:transition-all after:duration-300" data-key="navAtelier">Мануфактура</a>
+        <a href="#collections" class="text-[#111111]/70 hover:text-[#bd603f] transition duration-200 nav-link py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#bd603f] hover:after:w-full after:transition-all after:duration-300" data-key="navCollections">Колекції</a>
+        <a href="#sample-box" class="text-[#111111]/70 hover:text-[#bd603f] transition duration-200 nav-link py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#bd603f] hover:after:w-full after:transition-all after:duration-300" data-key="navDesigners">Дизайнерам</a>
+        <a href="#contacts" class="text-[#111111]/70 hover:text-[#bd603f] transition duration-200 nav-link py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#bd603f] hover:after:w-full after:transition-all after:duration-300" data-key="navContacts">Контакти</a>
+      </nav>
+
+      <!-- Language Selector & CTA Button -->
+      <div class="flex items-center gap-3.5 shrink-0">
+        <!-- Language Switcher -->
+        <div class="relative bg-white border border-[#fcceb7]/70 rounded-full p-1 flex items-center text-xs font-bold text-[#111111] shadow-xs">
+          <button onclick="setLanguage('uk')" id="btn-uk" class="px-2.5 py-1 rounded-full transition duration-200 bg-[#bd603f] text-white font-bold">UK</button>
+          <button onclick="setLanguage('ru')" id="btn-ru" class="px-2.5 py-1 rounded-full transition duration-200 text-[#111111]/60 hover:text-[#bd603f]">RU</button>
+          <button onclick="setLanguage('en')" id="btn-en" class="px-2.5 py-1 rounded-full transition duration-200 text-[#111111]/60 hover:text-[#bd603f]">EN</button>
+        </div>
+
+        <!-- Primary CTA Button -->
+        <a href="#sample-box" class="hidden sm:inline-flex items-center gap-2 bg-[#bd603f] hover:bg-[#111111] text-white px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 shrink-0">
+          <span data-key="ctaHeader">Sample Box</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden p-2 text-[#111111] hover:text-[#bd603f] transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden bg-[#f3f2f0] border-b border-[#fcceb7]/60 px-6 py-6 space-y-4 font-medium text-sm shadow-xl">
+      <a href="#philosophy" onclick="toggleMobileMenu()" class="block py-1 text-[#111111] hover:text-[#bd603f] transition" data-key="navPhilosophy">Філософія</a>
+      <a href="#atelier" onclick="toggleMobileMenu()" class="block py-1 text-[#111111] hover:text-[#bd603f] transition" data-key="navAtelier">Мануфактура</a>
+      <a href="#collections" onclick="toggleMobileMenu()" class="block py-1 text-[#111111] hover:text-[#bd603f] transition" data-key="navCollections">Колекції</a>
+      <a href="#sample-box" onclick="toggleMobileMenu()" class="block py-1 text-[#111111] hover:text-[#bd603f] transition" data-key="navDesigners">Дизайнерам</a>
+      <a href="#contacts" onclick="toggleMobileMenu()" class="block py-1 text-[#111111] hover:text-[#bd603f] transition" data-key="navContacts">Контакти</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-[90vh] flex items-center justify-center py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <!-- Architectural Subtle Overlay & Texture -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=1600&auto=format&fit=crop" alt="Shtayer Luxury Bedroom Styling" class="w-full h-full object-cover object-center opacity-25 scale-105" />
+      <div class="absolute inset-0 bg-gradient-to-b from-[#f3f2f0]/95 via-[#f3f2f0]/75 to-[#f3f2f0]"></div>
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto text-center space-y-10">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/95 border border-[#fcceb7] shadow-subtle badge-pulse text-xs font-semibold text-[#bd603f] tracking-widest uppercase">
+        <span class="w-2 h-2 rounded-full bg-[#bd603f]"></span>
+        <span data-key="heroBadge">Презентація для партнерів — архітекторів та дизайнерів</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold text-[#111111] leading-[1.12] tracking-tight max-w-4xl mx-auto" data-key="heroTitle">
+        Досконалість у деталях: Текстильні рішення преміум-класу
+      </h1>
+
+      <!-- Subtitle & Script Accent -->
+      <div class="space-y-2">
+        <p class="text-lg sm:text-2xl text-[#899895] font-serif italic max-w-2xl mx-auto font-normal" data-key="heroSubtitle">
+          Презентація для партнерів — архітекторів та дизайнерів інтер'єру
+        </p>
+        <div class="font-script text-3xl sm:text-4xl text-[#bd603f] opacity-90 pt-1">
+          Atelier Textile Shtayer
+        </div>
+      </div>
+
+      <!-- Description Body -->
+      <p class="text-base sm:text-lg text-[#111111]/75 max-w-2xl mx-auto leading-relaxed font-normal" data-key="heroBody">
+        Особлива ніша текстилю для вибагливих клієнтів. Створюємо вироби, які гармонійно завершують авторську візію простору.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-5 pt-2">
+        <a href="#sample-box" class="w-full sm:w-auto bg-[#bd603f] hover:bg-[#111111] text-white px-9 py-4 rounded-full text-xs font-semibold tracking-widest uppercase transition-all duration-300 shadow-luxury hover:shadow-card-hover transform hover:-translate-y-1" data-key="heroCta1">
+          Замовити Sample Box
+        </a>
+        <a href="#collections" class="w-full sm:w-auto bg-white/95 hover:bg-white text-[#111111] border border-[#fcceb7] hover:border-[#bd603f] px-9 py-4 rounded-full text-xs font-semibold tracking-widest uppercase transition-all duration-300 shadow-subtle hover:shadow-md transform hover:-translate-y-0.5" data-key="heroCta2">
+          Огляд колекцій
+        </a>
+      </div>
+
+      <!-- Quick Highlights Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5 pt-14 text-left max-w-4xl mx-auto">
+        <div class="glass-card p-5 rounded-2xl shadow-subtle hover:-translate-y-1">
+          <div class="text-2xl font-serif font-bold text-[#bd603f] mb-1.5 flex items-center gap-2">
+            <span>PRO</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-[#fcceb7]"></span>
+          </div>
+          <div class="text-xs text-[#899895] font-semibold leading-snug" data-key="stat1">Зразків тканин у Sample Box</div>
+        </div>
+        <div class="glass-card p-5 rounded-2xl shadow-subtle hover:-translate-y-1">
+          <div class="text-2xl font-serif font-bold text-[#bd603f] mb-1.5 flex items-center gap-2">
+            <span>100%</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-[#fcceb7]"></span>
+          </div>
+          <div class="text-xs text-[#899895] font-semibold leading-snug" data-key="stat2">Натуральна бавовна, шовк, льон</div>
+        </div>
+        <div class="glass-card p-5 rounded-2xl shadow-subtle hover:-translate-y-1">
+          <div class="text-2xl font-serif font-bold text-[#bd603f] mb-1.5 flex items-center gap-2">
+            <span>100%</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-[#fcceb7]"></span>
+          </div>
+          <div class="text-xs text-[#899895] font-semibold leading-snug" data-key="stat3">Пошиття за авторськими розмірами</div>
+        </div>
+        <div class="glass-card p-5 rounded-2xl shadow-subtle hover:-translate-y-1">
+          <div class="text-2xl font-serif font-bold text-[#bd603f] mb-1.5 flex items-center gap-2">
+            <span>100%</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-[#fcceb7]"></span>
+          </div>
+          <div class="text-xs text-[#899895] font-semibold leading-snug" data-key="stat4">Сервіс комплектації «під ключ»</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architectural Divider Line -->
+  <div class="max-w-7xl mx-auto px-8">
+    <div class="h-px bg-gradient-to-r from-transparent via-[#fcceb7]/70 to-transparent"></div>
+  </div>
+
+  <!-- Section 2: Philosophy -->
+  <section id="philosophy" class="py-28 sm:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <!-- Image Column -->
+      <div class="lg:col-span-6 relative">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl img-zoom-container border border-[#fcceb7]/70 cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1200&auto=format&fit=crop', 'Тактильний інтелект інтер\'єру Shtayer')">
+          <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1200&auto=format&fit=crop" alt="Tactile texture" class="w-full h-[520px] object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
+          
+          <div class="absolute bottom-5 right-5 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full text-xs font-semibold text-[#111111] flex items-center gap-2 shadow-lg border border-[#fcceb7]/60">
+            <svg class="w-4 h-4 text-[#bd603f]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+            <span data-key="zoomHint">Натисніть для перегляду</span>
+          </div>
+        </div>
+
+        <!-- Decorative Accent Box -->
+        <div class="hidden sm:block absolute -bottom-8 -right-6 bg-[#bd603f] text-white p-7 rounded-2xl shadow-luxury max-w-xs border border-[#fcceb7]/30 transform hover:scale-[1.02] transition duration-300">
+          <div class="font-script text-2xl text-[#fcceb7] mb-1">Quote</div>
+          <p class="font-serif italic text-sm leading-relaxed" data-key="quoteBox">
+            «Текстиль — це шкіра інтер'єру. Фінальний акорд вашого проєкту.»
+          </p>
+        </div>
+      </div>
+
+      <!-- Content Column -->
+      <div class="lg:col-span-6 space-y-7">
+        <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#bd603f]" data-key="sec2Category">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#bd603f]"></span>
+          Візія та Філософія
+        </div>
+
+        <h2 class="text-3xl sm:text-5xl font-serif font-bold text-[#111111] leading-tight" data-key="sec2Title">
+          Візія дизайнера завершується дотиком
+        </h2>
+
+        <p class="text-lg sm:text-xl font-serif italic text-[#899895]" data-key="sec2Subtitle">
+          Тактильний інтелект вашого інтер'єру
+        </p>
+
+        <div class="text-base text-[#111111]/80 leading-relaxed space-y-4 font-normal" data-key="sec2Body">
+          <p>Ви створюєте архітектуру простору, задаєте об'єми та світло. Але клієнт починає відчувати свій дім, коли торкається його поверхонь.</p>
+          <p>Текстиль — це шкіра інтер'єру. Фінальний акорд, який або підкреслить статус вашого проєкту, або знецінить його.</p>
+        </div>
+
+        <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="glass-card p-5 rounded-2xl border-l-4 border-l-[#bd603f] hover:shadow-subtle">
+            <h4 class="font-serif font-bold text-base text-[#111111]" data-key="sec2Feature1Title">Авторська візія</h4>
+            <p class="text-xs text-[#899895] mt-1.5 leading-relaxed" data-key="sec2Feature1Desc">Точне слідування концепції інтер'єру та колористиці</p>
+          </div>
+          <div class="glass-card p-5 rounded-2xl border-l-4 border-l-[#bd603f] hover:shadow-subtle">
+            <h4 class="font-serif font-bold text-base text-[#111111]" data-key="sec2Feature2Title">Бескомпромісний затишок</h4>
+            <p class="text-xs text-[#899895] mt-1.5 leading-relaxed" data-key="sec2Feature2Desc">Завершення простору преміальними натуральними текстурами</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architectural Divider Line -->
+  <div class="max-w-7xl mx-auto px-8">
+    <div class="h-px bg-gradient-to-r from-transparent via-[#fcceb7]/70 to-transparent"></div>
+  </div>
+
+  <!-- Section 3: Atelier -->
+  <section id="atelier" class="py-28 sm:py-36 bg-white/70 border-y border-[#fcceb7]/40 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <!-- Content Column -->
+        <div class="lg:col-span-6 space-y-7 order-2 lg:order-1">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#bd603f]" data-key="sec3Category">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#bd603f]"></span>
+            Концепція Мануфактури
+          </div>
+
+          <h2 class="text-3xl sm:text-5xl font-serif font-bold text-[#111111] leading-tight" data-key="sec3Title">
+            Ательє тихих розкошів
+          </h2>
+
+          <p class="text-lg sm:text-xl font-serif italic text-[#899895]" data-key="sec3Subtitle">
+            Текстиль, що говорить мовою високого дизайну
+          </p>
+
+          <div class="text-base text-[#111111]/80 leading-relaxed space-y-4 font-normal" data-key="sec3Body">
+            <p>Ми не орієнтовані на мас-маркет. Наша ніша — індивідуальне пошиття ексклюзивного текстилю для приватних резиденцій та бутик-готелів.</p>
+            <p>Використовуємо лише благородні натуральні тканини і працюємо за безкомпромісними стандартами якості.</p>
+          </div>
+
+          <!-- Niche List -->
+          <div class="space-y-3.5 pt-3">
+            <div class="flex items-center gap-3.5 p-3 rounded-2xl bg-white/80 border border-[#fcceb7]/50 shadow-xs hover:border-[#bd603f]/50 transition">
+              <div class="w-7 h-7 rounded-full bg-[#fcceb7] text-[#bd603f] flex items-center justify-center font-bold text-xs shrink-0">✓</div>
+              <span class="font-semibold text-sm text-[#111111]" data-key="sec3Item1">Приватні резиденції та вілли преміум-сегменту</span>
+            </div>
+            <div class="flex items-center gap-3.5 p-3 rounded-2xl bg-white/80 border border-[#fcceb7]/50 shadow-xs hover:border-[#bd603f]/50 transition">
+              <div class="w-7 h-7 rounded-full bg-[#fcceb7] text-[#bd603f] flex items-center justify-center font-bold text-xs shrink-0">✓</div>
+              <span class="font-semibold text-sm text-[#111111]" data-key="sec3Item2">Бутик-готелі та SPA-курорти</span>
+            </div>
+            <div class="flex items-center gap-3.5 p-3 rounded-2xl bg-white/80 border border-[#fcceb7]/50 shadow-xs hover:border-[#bd603f]/50 transition">
+              <div class="w-7 h-7 rounded-full bg-[#fcceb7] text-[#bd603f] flex items-center justify-center font-bold text-xs shrink-0">✓</div>
+              <span class="font-semibold text-sm text-[#111111]" data-key="sec3Item3">Апартаменти та пентхауси преміум-класу</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Column -->
+        <div class="lg:col-span-6 order-1 lg:order-2">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl img-zoom-container border border-[#fcceb7]/70 cursor-pointer group" onclick="openLightbox('https://shtayer.ua/image/catalog/postelnoe-bele/balmy/86.jpg', 'Колекція Shtayer Balmy')">
+            <img src="https://shtayer.ua/image/catalog/postelnoe-bele/balmy/86.jpg" alt="Shtayer Balmy Bedding" class="w-full h-[520px] object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6 text-white flex items-end justify-between">
+              <div>
+                <div class="font-serif text-2xl font-bold">Shtayer Balmy Sateen</div>
+                <div class="text-xs text-[#fcceb7] font-sans tracking-wider uppercase mt-1">Преміальний сатин високої щільності</div>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold text-white border border-white/30">Detail</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Craftsmanship -->
+  <section class="py-28 sm:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+      <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#bd603f]" data-key="sec4Category">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#bd603f]"></span>
+        Стандарти Якості
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-serif font-bold text-[#111111]" data-key="sec4Title">
+        Мануфактурний підхід та майстерність
+      </h2>
+      <p class="text-lg sm:text-xl font-serif italic text-[#899895]" data-key="sec4Subtitle">
+        Якість, за яку ви з гордістю ручаєтесь перед клієнтом
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <!-- Main Visual -->
+      <div class="lg:col-span-5 rounded-3xl overflow-hidden shadow-2xl img-zoom-container relative min-h-[400px] border border-[#fcceb7]/70 cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop', 'Шовковистий сатин Shtayer Powder Pink & Taupe')">
+        <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop" alt="Satin detail" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent"></div>
+        <div class="absolute bottom-6 left-6 right-6 text-white">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#fcceb7] bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 inline-block mb-2">Ручний контроль</span>
+          <h3 class="font-serif text-2xl font-bold">Сатин Powder Pink & Taupe</h3>
+        </div>
+      </div>
+
+      <!-- 3 Pillar Cards -->
+      <div class="lg:col-span-7 flex flex-col justify-between space-y-5">
+        <!-- Pillar 1 -->
+        <div class="glass-card p-7 rounded-3xl hover:border-[#bd603f] transition-all duration-300 hover:shadow-luxury">
+          <div class="flex items-start gap-5">
+            <div class="w-12 h-12 rounded-2xl bg-[#fcceb7]/60 text-[#bd603f] flex items-center justify-center font-serif font-bold text-xl shrink-0 border border-[#fcceb7]">
+              01
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="font-serif font-bold text-xl text-[#111111]" data-key="sec4Card1Title">Матеріали</h3>
+              <p class="text-sm text-[#111111]/80 leading-relaxed font-normal" data-key="sec4Card1Desc">
+                Сертифікована довговолокниста єгипетська бавовна, натуральний шовк, льон та преміальні наповнювачі.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="glass-card p-7 rounded-3xl hover:border-[#bd603f] transition-all duration-300 hover:shadow-luxury">
+          <div class="flex items-start gap-5">
+            <div class="w-12 h-12 rounded-2xl bg-[#fcceb7]/60 text-[#bd603f] flex items-center justify-center font-serif font-bold text-xl shrink-0 border border-[#fcceb7]">
+              02
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="font-serif font-bold text-xl text-[#111111]" data-key="sec4Card2Title">Виконання</h3>
+              <p class="text-sm text-[#111111]/80 leading-relaxed font-normal" data-key="sec4Card2Desc">
+                Кожен шов, кант і вишивка проходять ручний контроль. Ми гарантуємо ідеальну геометрію виробів навіть після сотень прань.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="glass-card p-7 rounded-3xl hover:border-[#bd603f] transition-all duration-300 hover:shadow-luxury">
+          <div class="flex items-start gap-5">
+            <div class="w-12 h-12 rounded-2xl bg-[#fcceb7]/60 text-[#bd603f] flex items-center justify-center font-serif font-bold text-xl shrink-0 border border-[#fcceb7]">
+              03
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="font-serif font-bold text-xl text-[#111111]" data-key="sec4Card3Title">Відчуття</h3>
+              <p class="text-sm text-[#111111]/80 leading-relaxed font-normal" data-key="sec4Card3Desc">
+                Ваші клієнти відчують виняткову преміальність з першого ж дотику.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Turnkey Partnership -->
+  <section class="py-28 sm:py-36 bg-white/70 border-t border-[#fcceb7]/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <!-- Content -->
+        <div class="lg:col-span-6 space-y-7">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#bd603f]" data-key="sec7Category">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#bd603f]"></span>
+            Надійне Партнерство
+          </div>
+
+          <h2 class="text-3xl sm:text-5xl font-serif font-bold text-[#111111] leading-tight" data-key="sec7Title">
+            Ваш надійний партнер при комплектації
+          </h2>
+
+          <p class="text-lg sm:text-xl font-serif italic text-[#899895]" data-key="sec7Subtitle">
+            Знімаємо з вас турботи щодо текстильного оформлення об'єкта
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-[#bd603f] hover:shadow-subtle">
+              <h4 class="font-serif font-bold text-lg text-[#111111]" data-key="sec7Point1Title">Персональний технолог</h4>
+              <p class="text-xs text-[#899895] mt-1.5 leading-relaxed font-normal" data-key="sec7Point1Desc">
+                Повний супровід вашого замовлення від замірів ліжок на об'єкті до фінального застеляння перед здачею.
+              </p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-[#bd603f] hover:shadow-subtle">
+              <h4 class="font-serif font-bold text-lg text-[#111111]" data-key="sec7Point2Title">Захист вашої репутації</h4>
+              <p class="text-xs text-[#899895] mt-1.5 leading-relaxed font-normal" data-key="sec7Point2Desc">
+                Ви рекомендуєте продукт, який слугуватиме роками. Клієнт буде вдячний за комфорт щоночі.
+              </p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-[#bd603f] hover:shadow-subtle">
+              <h4 class="font-serif font-bold text-lg text-[#111111]" data-key="sec7Point3Title">Спеціальні умови</h4>
+              <p class="text-xs text-[#899895] mt-1.5 leading-relaxed font-normal" data-key="sec7Point3Desc">
+                Гнучка програма лояльності або агентська винагорода для дизайнерів.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image -->
+        <div class="lg:col-span-6">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl img-zoom-container border border-[#fcceb7]/70 cursor-pointer group" onclick="openLightbox('https://shtayer.ua/image/catalog/postelnoe-bele/MOSS/03.25place3308%20(1)%20(1)%20(1).jpg', 'Застеляння об\'єкта сатином Shtayer Moss')">
+            <img src="https://shtayer.ua/image/catalog/postelnoe-bele/MOSS/03.25place3308%20(1)%20(1)%20(1).jpg" alt="Shtayer Moss Collection" class="w-full h-[520px] object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div class="absolute bottom-6 left-6 text-white">
+              <div class="font-serif text-2xl font-bold">Shtayer Moss Collection</div>
+              <div class="text-xs text-[#fcceb7] font-sans tracking-wider uppercase mt-1">Преміальне пошиття за авторськими розмірами</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architectural Divider Line -->
+  <div class="max-w-7xl mx-auto px-8">
+    <div class="h-px bg-gradient-to-r from-transparent via-[#fcceb7]/70 to-transparent"></div>
+  </div>
+
+  <!-- Section 5: Interactive Collections Showcase -->
+  <section id="collections" class="py-28 sm:py-36 bg-[#111111] text-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-14">
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-[#fcceb7]" data-key="sec5Category">
+          Асортимент & Комплектація
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-serif font-bold text-white" data-key="sec5Title">
+          Комплектація спальні та ванної кімнати «під ключ»
+        </h2>
+        <p class="text-lg sm:text-xl font-serif italic text-[#fcceb7]/80" data-key="sec5Subtitle">
+          Асортимент, що закриває будь-які текстильні потреби об'єкта
+        </p>
+      </div>
+
+      <!-- Collection Tabs -->
+      <div class="flex justify-center border-b border-white/15 mb-14 overflow-x-auto pb-3 gap-2 sm:gap-6">
+        <button onclick="switchTab('bedding')" id="tab-bedding" class="px-6 py-3.5 text-xs sm:text-sm font-semibold tracking-wider uppercase border-b-2 border-[#bd603f] text-[#fcceb7] transition duration-300 shrink-0">
+          1. Постільна білизна
+        </button>
+        <button onclick="switchTab('pillows')" id="tab-pillows" class="px-6 py-3.5 text-xs sm:text-sm font-semibold tracking-wider uppercase border-b-2 border-transparent text-white/60 hover:text-white transition duration-300 shrink-0">
+          2. Ковдри, Подушки & Топпери
+        </button>
+        <button onclick="switchTab('bath')" id="tab-bath" class="px-6 py-3.5 text-xs sm:text-sm font-semibold tracking-wider uppercase border-b-2 border-transparent text-white/60 hover:text-white transition duration-300 shrink-0">
+          3. Махрові вироби, Рушники & SPA
+        </button>
+      </div>
+
+      <!-- Tab Content 1: Bedding -->
+      <div id="content-bedding" class="tab-content grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-5 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#bd603f]/20 border border-[#bd603f]/40 text-xs font-semibold text-[#fcceb7]">
+            <span class="w-2 h-2 rounded-full bg-[#bd603f] animate-pulse"></span>
+            Спальний Текстиль «Під Ключ»
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-serif font-bold text-white" data-key="tab1Head">
+            Колекції з сатину, перкалю та натурального шовку
+          </h3>
+          <p class="text-base text-white/80 leading-relaxed font-normal" data-key="tab1Desc">
+            Виготовляємо постільну білизну найвищого ґатунку. Пошиття під нестандартні матраци, круглі ліжка, високі подіуми та складні формати.
+          </p>
+          <ul class="space-y-3.5 text-sm text-[#fcceb7]">
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#bd603f] text-white flex items-center justify-center text-xs font-bold">✓</span>
+              <span>Преміальний сатин 300TC – 600TC з шовковистим блиском</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#bd603f] text-white flex items-center justify-center text-xs font-bold">✓</span>
+              <span>Матовий королівський перкаль підвищеної зносостійкості</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#bd603f] text-white flex items-center justify-center text-xs font-bold">✓</span>
+              <span>100% натуральний шовк Mulberry для преміум-номерів</span>
+            </li>
+          </ul>
+        </div>
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="rounded-3xl overflow-hidden shadow-2xl img-zoom-container border border-white/15 cursor-pointer relative group h-[360px]" onclick="openLightbox('https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=1200&auto=format&fit=crop', 'Багатошаровий сатиновий комплект для спальні Shtayer')">
+            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=1200&auto=format&fit=crop" alt="Shtayer Bedding Styling" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4 text-white">
+              <span class="text-[10px] font-bold uppercase tracking-widest bg-[#bd603f] text-white px-2.5 py-1 rounded-full inline-block mb-1">Спальний сет</span>
+              <p class="font-serif font-bold text-sm">Сатин Преміум Multi-layer</p>
+            </div>
+          </div>
+          <div class="rounded-3xl overflow-hidden shadow-2xl img-zoom-container border border-white/15 cursor-pointer relative group h-[360px]" onclick="openLightbox('https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop', 'Шовковистий сатин Shtayer Powder Pink & Taupe')">
+            <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop" alt="Shtayer Powder Pink & Taupe" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4 text-white">
+              <span class="text-[10px] font-bold uppercase tracking-widest bg-[#bd603f] text-white px-2.5 py-1 rounded-full inline-block mb-1">Авторська Гама</span>
+              <p class="font-serif font-bold text-sm">Powder Pink & Taupe</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content 2: Pillows -->
+      <div id="content-pillows" class="tab-content hidden grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-5 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#bd603f]/20 border border-[#bd603f]/40 text-xs font-semibold text-[#fcceb7]">
+            <span class="w-2 h-2 rounded-full bg-[#bd603f] animate-pulse"></span>
+            Клімат-контроль Сну
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-serif font-bold text-white" data-key="tab2Head">
+            Індивідуальне «меню подушок», ковдри та топпери
+          </h3>
+          <p class="text-base text-white/80 leading-relaxed font-normal" data-key="tab2Desc">
+            Розробляємо персональне меню подушок різної пружності, терморегулюючі ковдри та захисні матрацники для ідеального сну ваших гостей.
+          </p>
+          <ul class="space-y-3.5 text-sm text-[#fcceb7]">
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#bd603f] text-white flex items-center justify-center text-xs font-bold">✓</span>
+              <span>100% альпійський гусячий пух у касетному виконанні</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#bd603f] text-white flex items-center justify-center text-xs font-bold">✓</span>
+              <span>Фірмові анатомічні наматрацники та топпери SHTAYER</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#bd603f] text-white flex items-center justify-center text-xs font-bold">✓</span>
+              <span>Гіпоалергенне анаполімерне волокно та шовк</span>
+            </li>
+          </ul>
+        </div>
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="rounded-3xl overflow-hidden shadow-2xl img-zoom-container border border-white/15 cursor-pointer relative group h-[360px]" onclick="openLightbox('https://images.unsplash.com/photo-1578898835028-4e3e3b333469?q=80&w=1200&auto=format&fit=crop', 'Касетна пухова ковдра SHTAYER — Love Your Home More')">
+            <img src="https://images.unsplash.com/photo-1578898835028-4e3e3b333469?q=80&w=1200&auto=format&fit=crop" alt="Pillows & Duvets Shtayer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4 text-white">
+              <span class="text-[10px] font-bold uppercase tracking-widest bg-[#bd603f] text-white px-2.5 py-1 rounded-full inline-block mb-1">Пухові ковдри</span>
+              <p class="font-serif font-bold text-sm">Касетна ковдра SHTAYER — Love Your Home More</p>
+            </div>
+          </div>
+          <div class="rounded-3xl overflow-hidden shadow-2xl img-zoom-container border border-white/15 cursor-pointer relative group h-[360px]" onclick="openLightbox('https://shtayer.ua/image/catalog/postelnoe-bele/balmy/86.jpg', 'Фірмовий топпер та наматрацник SHTAYER з лейблом')">
+            <img src="https://shtayer.ua/image/catalog/postelnoe-bele/balmy/86.jpg" alt="Shtayer Mattress Topper" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4 text-white">
+              <span class="text-[10px] font-bold uppercase tracking-widest bg-[#bd603f] text-white px-2.5 py-1 rounded-full inline-block mb-1">Топпери & Захист</span>
+              <p class="font-serif font-bold text-sm">Наматрацник з кантом SHTAYER</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content 3: Bath -->
+      <div id="content-bath" class="tab-content hidden grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-5 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#bd603f]/20 border border-[#bd603f]/40 text-xs font-semibold text-[#fcceb7]">
+            <span class="w-2 h-2 rounded-full bg-[#bd603f] animate-pulse"></span>
+            Текстиль Ванної Кімнати & SPA
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-serif font-bold text-white" data-key="tab3Head">
+            Халати, рушники та домашній шовк з відчуттям 5★ SPA
+          </h3>
+          <p class="text-base text-white/80 leading-relaxed font-normal" data-key="tab3Desc">
+            Махрові та вафельні вироби високої щільності (550-700 г/м²), шовкові комплекти для відпочинку, що зберігають м'якість і вишуканий вигляд при щоденному пранні.
+          </p>
+          <ul class="space-y-3.5 text-sm text-[#fcceb7]">
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#bd603f] text-white flex items-center justify-center text-xs font-bold">✓</span>
+              <span>Вафельна еко-бавовна Sage/Slate та махра Micro Cotton</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#bd603f] text-white flex items-center justify-center text-xs font-bold">✓</span>
+              <span>Халати кімоно, з шалевим коміром та шовкові сети Loungewear</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#bd603f] text-white flex items-center justify-center text-xs font-bold">✓</span>
+              <span>Персональна вишивка логотипів та монограм закладу</span>
+            </li>
+          </ul>
+        </div>
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="rounded-3xl overflow-hidden shadow-2xl img-zoom-container border border-white/15 cursor-pointer relative group h-[360px]" onclick="openLightbox('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1200&auto=format&fit=crop', 'Вафельні рушники & SPA комплекти Shtayer')">
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1200&auto=format&fit=crop" alt="Spa Attire & Towels" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4 text-white">
+              <span class="text-[10px] font-bold uppercase tracking-widest bg-[#bd603f] text-white px-2.5 py-1 rounded-full inline-block mb-1">SPA & Рушники</span>
+              <p class="font-serif font-bold text-sm">Вафельні рушники & SPA комплекти Shtayer</p>
+            </div>
+          </div>
+          <div class="rounded-3xl overflow-hidden shadow-2xl img-zoom-container border border-white/15 cursor-pointer relative group h-[360px]" onclick="openLightbox('https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1200&auto=format&fit=crop', 'Шовкова піжама & комплект Shtayer Ivory Silk Lounge')">
+            <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1200&auto=format&fit=crop" alt="Ivory Silk Loungewear" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4 text-white">
+              <span class="text-[10px] font-bold uppercase tracking-widest bg-[#bd603f] text-white px-2.5 py-1 rounded-full inline-block mb-1">Шовковий Одяг</span>
+              <p class="font-serif font-bold text-sm">Шовкова піжама & комплект Shtayer Ivory Silk Lounge</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section: Real Product Photos Gallery (Галерея Натурних Фотознімків Shtayer) -->
+  <section id="gallery" class="py-24 sm:py-32 bg-[#f3f2f0] border-t border-[#fcceb7]/40 relative overflow-hidden">
+    <!-- Subtle Background Ambient Lighting -->
+    <div class="absolute -top-24 -right-24 w-96 h-96 bg-[#bd603f]/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-[#fcceb7]/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-14">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#bd603f]/10 border border-[#bd603f]/20 text-[11px] font-bold uppercase tracking-[0.25em] text-[#bd603f]">
+          <span class="w-2 h-2 rounded-full bg-[#bd603f] animate-pulse"></span>
+          <span data-key="b2bSpaceCategory">Натурні Знімки Продукції</span>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-serif font-bold text-[#111111] leading-tight" data-key="b2bSpaceTitle">
+          Простір текстильних рішень SHTAYER
+        </h2>
+        <p class="text-base sm:text-lg font-serif italic text-[#899895] max-w-2xl mx-auto leading-relaxed" data-key="b2bSpaceSubtitle">
+          Реальні кадри продукції Shtayer: від постільної білизни та шовкових домашніх сетів до фірмових матрацників і пухових ковдр.
+        </p>
+      </div>
+
+      <!-- Interactive B2B Catalog Banner Container -->
+      <div class="max-w-5xl mx-auto">
+        <a href="https://shtayer.ua" target="_blank" rel="noopener noreferrer" class="group relative block rounded-3xl overflow-hidden shadow-2xl border border-[#fcceb7]/80 bg-[#111111] cursor-pointer transition-all duration-500 hover:shadow-card-hover hover:border-[#bd603f] transform hover:-translate-y-1">
+          
+          <!-- Image Container with Zoom Effect -->
+          <div class="relative h-[380px] sm:h-[480px] md:h-[520px] w-full overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=1600&auto=format&fit=crop" 
+                 alt="Shtayer B2B Textile Collection" 
+                 class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out filter brightness-[0.88] group-hover:brightness-100" />
+            
+            <!-- Dark Overlay Gradients for Optimal Contrast -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20 group-hover:from-black/75 transition-colors duration-500"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent hidden md:block"></div>
+
+            <!-- Top Badge -->
+            <div class="absolute top-6 left-6 sm:top-8 sm:left-8 z-10">
+              <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#111111]/80 backdrop-blur-md border border-[#fcceb7]/40 text-xs font-bold uppercase tracking-widest text-[#fcceb7] shadow-lg">
+                <span class="w-2 h-2 rounded-full bg-[#bd603f] animate-ping"></span>
+                B2B Колекція текстильних рішень
+              </span>
+            </div>
+
+            <!-- Content Area Over the Photo -->
+            <div class="absolute inset-x-0 bottom-0 p-6 sm:p-10 md:p-12 z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+              <div class="max-w-xl space-y-3">
+                <h3 class="text-2xl sm:text-4xl font-serif font-bold text-white leading-tight drop-shadow-md">
+                  Преміальний текстиль для готелів, апартаментів та дизайнерських проєктів
+                </h3>
+                <p class="text-sm sm:text-base text-gray-200 font-light leading-relaxed drop-shadow-sm">
+                  Ознайомтеся з повним асортиментом постільної білизни, рушників, халатів та аксесуарів у нашому онлайн каталозі.
+                </p>
+              </div>
+
+              <!-- Action Button -->
+              <div class="shrink-0">
+                <span class="inline-flex items-center gap-3 px-7 py-4 rounded-2xl bg-[#bd603f] text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-luxury group-hover:bg-[#fcceb7] group-hover:text-[#111111] transition-all duration-300 transform group-hover:translate-x-1">
+                  <span>Переглянути каталог на Shtayer.ua</span>
+                  <svg class="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 6: Opportunities & Interactive Sample Box Form -->
+  <section id="sample-box" class="py-28 sm:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      <!-- Visual Column -->
+      <div class="lg:col-span-5 space-y-7">
+        <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#bd603f]" data-key="sec6Category">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#bd603f]"></span>
+          Партнерська Програма
+        </div>
+
+        <h2 class="text-3xl sm:text-5xl font-serif font-bold text-[#111111] leading-tight" data-key="sec6Title">
+          Професійні можливості для дизайнерів та архітекторів
+        </h2>
+
+        <p class="text-base text-[#111111]/80 leading-relaxed font-normal" data-key="sec6Desc">
+          Співпраця, що підкреслить статус ваших проєктів та закриє складні завдання комплектації.
+        </p>
+
+        <div class="space-y-4 pt-2">
+          <div class="flex items-start gap-4 p-3 rounded-2xl bg-white/70 border border-[#fcceb7]/40 shadow-xs">
+            <div class="w-8 h-8 rounded-full bg-[#bd603f] text-white flex items-center justify-center shrink-0 font-serif font-bold text-sm">1</div>
+            <div>
+              <h4 class="font-serif font-bold text-[#111111]" data-key="sec6Feat1Title">Партнерські програми</h4>
+              <p class="text-xs text-[#899895] mt-1 leading-relaxed" data-key="sec6Feat1Desc">Спеціальні умови закупівлі, агентська винагорода або індивідуальні знижки для клієнтів.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-3 rounded-2xl bg-white/70 border border-[#fcceb7]/40 shadow-xs">
+            <div class="w-8 h-8 rounded-full bg-[#bd603f] text-white flex items-center justify-center shrink-0 font-serif font-bold text-sm">2</div>
+            <div>
+              <h4 class="font-serif font-bold text-[#111111]" data-key="sec6Feat2Title">Професійні матеріали</h4>
+              <p class="text-xs text-[#899895] mt-1 leading-relaxed" data-key="sec6Feat2Desc">Преміальний Sample Box зі зразками матеріалів наших колекцій.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-3 rounded-2xl bg-white/70 border border-[#fcceb7]/40 shadow-xs">
+            <div class="w-8 h-8 rounded-full bg-[#bd603f] text-white flex items-center justify-center shrink-0 font-serif font-bold text-sm">3</div>
+            <div>
+              <h4 class="font-serif font-bold text-[#111111]" data-key="sec6Feat3Title">Супровід «під ключ»</h4>
+              <p class="text-xs text-[#899895] mt-1 leading-relaxed" data-key="sec6Feat3Desc">Персональний технолог візьме на себе всі закриття — від замірів до застеляння.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-3xl overflow-hidden shadow-luxury border border-[#fcceb7] img-zoom-container cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop', 'Шовковий комплект Shtayer Ivory Silk Lounge')">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop" alt="Ivory Silk Loungewear" class="w-full h-52 object-cover" />
+        </div>
+      </div>
+
+      <!-- Interactive Form Column -->
+      <div class="lg:col-span-7">
+        <div class="glass-card p-8 sm:p-10 rounded-3xl shadow-luxury relative border-2 border-[#fcceb7] bg-white/90">
+          
+          <div class="space-y-4">
+            <div class="inline-flex items-center gap-2 bg-[#bd603f]/10 text-[#bd603f] px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider border border-[#bd603f]/20">
+              <span class="w-2 h-2 rounded-full bg-[#bd603f] animate-pulse"></span>
+              <span data-key="badgeSampleFree">Безкоштовно для партнерів</span>
+            </div>
+
+            <h3 class="text-2xl sm:text-3xl font-serif font-bold text-[#111111]" data-key="formTitle">
+              Замовити Sample Box та умови співпраці
+            </h3>
+            <p class="text-xs sm:text-sm text-[#899895] font-medium leading-relaxed" data-key="formSubtitle">
+              Отримайте фірмовий бокс зі зразками єгипетської бавовни, сатину, перкалю та махри, а також партнерський прайс-лист.
+            </p>
+
+            <!-- Quick Info Cards -->
+            <div class="grid grid-cols-2 gap-2.5 pt-1 text-xs text-[#111111]/80 font-medium">
+              <div class="flex items-center gap-2 bg-[#f3f2f0] p-3 rounded-xl border border-[#fcceb7]/50">
+                <span class="text-[#bd603f] font-bold">✓</span> <span data-key="featSample1">Зразки всіх тканин</span>
+              </div>
+              <div class="flex items-center gap-2 bg-[#f3f2f0] p-3 rounded-xl border border-[#fcceb7]/50">
+                <span class="text-[#bd603f] font-bold">✓</span> <span data-key="featSample2">0 грн за комплектацію</span>
+              </div>
+              <div class="flex items-center gap-2 bg-[#f3f2f0] p-3 rounded-xl border border-[#fcceb7]/50">
+                <span class="text-[#bd603f] font-bold">✓</span> <span data-key="featSample3">Каталог та прайс</span>
+              </div>
+              <div class="flex items-center gap-2 bg-[#f3f2f0] p-3 rounded-xl border border-[#fcceb7]/50">
+                <span class="text-[#bd603f] font-bold">✓</span> <span data-key="featSample4">Доставка Новою Поштою</span>
+              </div>
+            </div>
+
+            <!-- Primary Action Button to Expand Form -->
+            <button type="button" id="toggleFormBtn" onclick="toggleSampleBoxForm()" class="w-full mt-4 bg-[#bd603f] hover:bg-[#111111] text-white py-4 px-6 rounded-2xl text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 shadow-luxury hover:shadow-card-hover transform hover:-translate-y-0.5 flex items-center justify-between group cursor-pointer">
+              <span id="toggleFormBtnText" class="flex items-center gap-2.5" data-key="btnOpenSampleForm">
+                <svg class="w-5 h-5 text-[#fcceb7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                <span>Оформити заявку на Sample Box</span>
+              </span>
+              <span id="toggleFormIcon" class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-300 group-hover:bg-white/30 shrink-0">
+                <svg class="w-4 h-4 text-white transform transition-transform duration-300" id="chevronIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </button>
+          </div>
+
+          <!-- Expandable Form Wrapper -->
+          <div id="sampleBoxFormWrapper" class="hidden transition-all duration-500 overflow-hidden pt-6 mt-6 border-t border-[#fcceb7]">
+            <form id="leadForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
+              <!-- Full Name Input -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#111111] mb-2" data-key="labelName">
+                  Ваше ім'я та прізвище *
+                </label>
+                <input type="text" id="designerName" required placeholder="Олена Ковальчук" class="w-full bg-white border border-[#fcceb7] rounded-2xl px-5 py-3.5 text-sm text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#bd603f]/30 focus:border-[#bd603f] transition duration-200" />
+              </div>
+
+              <!-- Phone Number Input -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#111111] mb-2" data-key="labelPhone">
+                  Номер телефону (Telegram / WhatsApp) *
+                </label>
+                <input type="tel" id="designerPhone" required placeholder="+380 97 000 00 00" class="w-full bg-white border border-[#fcceb7] rounded-2xl px-5 py-3.5 text-sm text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#bd603f]/30 focus:border-[#bd603f] transition duration-200" />
+              </div>
+
+              <!-- Studio / City Input -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#111111] mb-2" data-key="labelStudio">
+                  Назва студії / Місто
+                </label>
+                <input type="text" id="designerStudio" placeholder="Design Studio, Київ" class="w-full bg-white border border-[#fcceb7] rounded-2xl px-5 py-3.5 text-sm text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#bd603f]/30 focus:border-[#bd603f] transition duration-200" />
+              </div>
+
+              <!-- Option Selection Pills -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#111111] mb-3" data-key="labelInterest">
+                  Що вас найбільше цікавить?
+                </label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+                  <label class="flex items-center gap-3 p-3 rounded-xl border border-[#fcceb7] bg-white cursor-pointer hover:bg-[#fcceb7]/20 transition duration-200">
+                    <input type="checkbox" name="interest" value="Sample Box" checked class="w-4 h-4 rounded text-[#bd603f] focus:ring-[#bd603f] accent-[#bd603f]" />
+                    <span class="font-medium" data-key="optSampleBox">Безкоштовний Sample Box</span>
+                  </label>
+                  <label class="flex items-center gap-3 p-3 rounded-xl border border-[#fcceb7] bg-white cursor-pointer hover:bg-[#fcceb7]/20 transition duration-200">
+                    <input type="checkbox" name="interest" value="Catalog" checked class="w-4 h-4 rounded text-[#bd603f] focus:ring-[#bd603f] accent-[#bd603f]" />
+                    <span class="font-medium" data-key="optCatalog">Каталог та прайс-лист для партнерів</span>
+                  </label>
+                  <label class="flex items-center gap-3 p-3 rounded-xl border border-[#fcceb7] bg-white cursor-pointer hover:bg-[#fcceb7]/20 transition duration-200">
+                    <input type="checkbox" name="interest" value="Discount" class="w-4 h-4 rounded text-[#bd603f] focus:ring-[#bd603f] accent-[#bd603f]" />
+                    <span class="font-medium" data-key="optDiscount">Партнерські знижки & комісія</span>
+                  </label>
+                  <label class="flex items-center gap-3 p-3 rounded-xl border border-[#fcceb7] bg-white cursor-pointer hover:bg-[#fcceb7]/20 transition duration-200">
+                    <input type="checkbox" name="interest" value="Technologist Consultation" class="w-4 h-4 rounded text-[#bd603f] focus:ring-[#bd603f] accent-[#bd603f]" />
+                    <span class="font-medium" data-key="optTech">Консультація технолога</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="w-full bg-[#111111] hover:bg-[#bd603f] text-white py-4 rounded-2xl text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-luxury hover:shadow-card-hover transform hover:-translate-y-0.5 flex items-center justify-center gap-2.5">
+                <span data-key="btnSubmitForm">Відправити заявку на Sample Box</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </button>
+
+              <p class="text-[11px] text-[#899895] text-center font-medium" data-key="formPrivacy">
+                Заявка надсилається безпосередньо менеджеру бренду Shtayer. Ми збережемо вашу конфіденційність.
+              </p>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 7: Turnkey Partnership -->
+  <section class="py-28 sm:py-36 bg-white/70 border-t border-[#fcceb7]/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <!-- Content -->
+        <div class="lg:col-span-6 space-y-7">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#bd603f]" data-key="sec7Category">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#bd603f]"></span>
+            Надійне Партнерство
+          </div>
+
+          <h2 class="text-3xl sm:text-5xl font-serif font-bold text-[#111111] leading-tight" data-key="sec7Title">
+            Ваш надійний партнер при комплектації
+          </h2>
+
+          <p class="text-lg sm:text-xl font-serif italic text-[#899895]" data-key="sec7Subtitle">
+            Знімаємо з вас турботи щодо текстильного оформлення об'єкта
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-[#bd603f] hover:shadow-subtle">
+              <h4 class="font-serif font-bold text-lg text-[#111111]" data-key="sec7Point1Title">Персональний технолог</h4>
+              <p class="text-xs text-[#899895] mt-1.5 leading-relaxed font-normal" data-key="sec7Point1Desc">
+                Повний супровід вашого замовлення від замірів ліжок на об'єкті до фінального застеляння перед здачею.
+              </p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-[#bd603f] hover:shadow-subtle">
+              <h4 class="font-serif font-bold text-lg text-[#111111]" data-key="sec7Point2Title">Захист вашої репутації</h4>
+              <p class="text-xs text-[#899895] mt-1.5 leading-relaxed font-normal" data-key="sec7Point2Desc">
+                Ви рекомендуєте продукт, який слугуватиме роками. Клієнт буде вдячний за комфорт щоночі.
+              </p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-[#bd603f] hover:shadow-subtle">
+              <h4 class="font-serif font-bold text-lg text-[#111111]" data-key="sec7Point3Title">Спеціальні умови</h4>
+              <p class="text-xs text-[#899895] mt-1.5 leading-relaxed font-normal" data-key="sec7Point3Desc">
+                Гнучка програма лояльності або агентська винагорода для дизайнерів.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image -->
+        <div class="lg:col-span-6">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl img-zoom-container border border-[#fcceb7]/70 cursor-pointer group" onclick="openLightbox('https://shtayer.ua/image/catalog/postelnoe-bele/MOSS/03.25place3308%20(1)%20(1)%20(1).jpg', 'Застеляння об\'єкта сатином Shtayer Moss')">
+            <img src="https://shtayer.ua/image/catalog/postelnoe-bele/MOSS/03.25place3308%20(1)%20(1)%20(1).jpg" alt="Shtayer Moss Collection" class="w-full h-[520px] object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div class="absolute bottom-6 left-6 text-white">
+              <div class="font-serif text-2xl font-bold">Shtayer Moss Collection</div>
+              <div class="text-xs text-[#fcceb7] font-sans tracking-wider uppercase mt-1">Преміальне пошиття за авторськими розмірами</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architectural Divider Line -->
+  <div class="max-w-7xl mx-auto px-8">
+    <div class="h-px bg-gradient-to-r from-transparent via-[#fcceb7]/70 to-transparent"></div>
+  </div>
+
+  <!-- Section 8: Direct Contacts & Socials -->
+  <section id="contacts" class="py-28 sm:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+      <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#bd603f]" data-key="sec8Category">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#bd603f]"></span>
+        Прямий Зв'язок
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-serif font-bold text-[#111111]" data-key="sec8Title">
+        Створюймо бездоганні інтер'єри разом
+      </h2>
+      <p class="text-lg sm:text-xl font-serif italic text-[#899895]" data-key="sec8Subtitle">
+        Контактна інформація бренду Shtayer
+      </p>
+    </div>
+
+    <!-- Contact Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Phone Card -->
+      <a href="tel:+380951096279" class="glass-card p-8 rounded-3xl text-center hover:border-[#bd603f] hover:shadow-card-hover transition duration-300 group transform hover:-translate-y-1">
+        <div class="w-14 h-14 rounded-2xl bg-[#bd603f] text-white flex items-center justify-center mx-auto mb-5 group-hover:bg-[#111111] transition duration-300 shadow-md">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        </div>
+        <div class="text-xs font-bold uppercase tracking-wider text-[#899895] mb-1" data-key="contactPhoneLabel">Телефон</div>
+        <div class="font-serif font-bold text-lg text-[#111111] group-hover:text-[#bd603f] transition">+380 (95) 109 62 79</div>
+        <div class="text-[11px] text-[#bd603f] font-semibold mt-2" data-key="contactPhoneHint">Натисніть для дзвінка</div>
+      </a>
+
+      <!-- Email Card -->
+      <a href="mailto:shtayer.forhotel@gmail.com" class="glass-card p-8 rounded-3xl text-center hover:border-[#bd603f] hover:shadow-card-hover transition duration-300 group transform hover:-translate-y-1">
+        <div class="w-14 h-14 rounded-2xl bg-[#bd603f] text-white flex items-center justify-center mx-auto mb-5 group-hover:bg-[#111111] transition duration-300 shadow-md">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </div>
+        <div class="text-xs font-bold uppercase tracking-wider text-[#899895] mb-1" data-key="contactEmailLabel">Електронна пошта</div>
+        <div class="font-serif font-bold text-sm text-[#111111] group-hover:text-[#bd603f] transition truncate">shtayer.forhotel@gmail.com</div>
+        <div class="text-[11px] text-[#bd603f] font-semibold mt-2" data-key="contactEmailHint">Надіслати листа</div>
+      </a>
+
+      <!-- Instagram Card -->
+      <a href="https://instagram.com/shtayer.ua" target="_blank" rel="noopener noreferrer" class="glass-card p-8 rounded-3xl text-center hover:border-[#bd603f] hover:shadow-card-hover transition duration-300 group transform hover:-translate-y-1">
+        <div class="w-14 h-14 rounded-2xl bg-[#bd603f] text-white flex items-center justify-center mx-auto mb-5 group-hover:bg-[#111111] transition duration-300 shadow-md">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </div>
+        <div class="text-xs font-bold uppercase tracking-wider text-[#899895] mb-1">Instagram</div>
+        <div class="font-serif font-bold text-lg text-[#111111] group-hover:text-[#bd603f] transition">@shtayer.ua</div>
+        <div class="text-[11px] text-[#bd603f] font-semibold mt-2" data-key="contactInstaHint">Перейти у профіль</div>
+      </a>
+
+      <!-- Website Card -->
+      <a href="https://shtayer.ua" target="_blank" rel="noopener noreferrer" class="glass-card p-8 rounded-3xl text-center hover:border-[#bd603f] hover:shadow-card-hover transition duration-300 group transform hover:-translate-y-1">
+        <div class="w-14 h-14 rounded-2xl bg-[#bd603f] text-white flex items-center justify-center mx-auto mb-5 group-hover:bg-[#111111] transition duration-300 shadow-md">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+        </div>
+        <div class="text-xs font-bold uppercase tracking-wider text-[#899895] mb-1">Офіційний Сайт</div>
+        <div class="font-serif font-bold text-lg text-[#111111] group-hover:text-[#bd603f] transition">shtayer.ua</div>
+        <div class="text-[11px] text-[#bd603f] font-semibold mt-2" data-key="contactWebHint">Відкрити каталог</div>
+      </a>
+
+    </div>
+
+    <!-- Messengers Bar -->
+    <div class="mt-12 glass-card p-8 sm:p-12 rounded-3xl text-center space-y-6 max-w-4xl mx-auto border-2 border-[#fcceb7] shadow-luxury relative overflow-hidden">
+      <!-- Top Decorative Accent Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#bd603f]/10 border border-[#bd603f]/20 text-[11px] font-bold uppercase tracking-widest text-[#bd603f]">
+        <span class="w-2 h-2 rounded-full bg-[#bd603f] animate-pulse"></span>
+        <span>Прямий Зв'язок 24/7</span>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="font-serif font-bold text-2xl sm:text-3xl text-[#111111]" data-key="messengersTitle">Швидкий зв'язок у месенджерах</h3>
+        <p class="text-xs sm:text-sm text-[#899895] max-w-xl mx-auto leading-relaxed" data-key="messengersSubtitle">Наші менеджери на зв'язку для консультації, розрахунку комплектації та узгодження зразків</p>
+      </div>
+      
+      <!-- Elegant Corporate Messenger Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 max-w-2xl mx-auto">
+        
+        <!-- Telegram Card (Terracotta Brand Hero) -->
+        <a href="https://t.me/+380951096279" target="_blank" rel="noopener noreferrer" class="group relative p-5 rounded-2xl bg-[#bd603f] text-white border border-[#fcceb7]/40 shadow-md hover:shadow-card-hover transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-center justify-between gap-3 text-center">
+          <div class="w-12 h-12 rounded-xl bg-white/15 text-white flex items-center justify-center group-hover:bg-white group-hover:text-[#bd603f] transition-all duration-300 shadow-sm">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.1.02-1.62 1.03-4.57 3.02-.43.3-.82.45-1.17.44-.39-.01-1.14-.22-1.7-.41-.69-.23-1.24-.35-1.19-.74.03-.2.3-.4.81-.59 3.19-1.39 5.32-2.3 6.39-2.73 3.04-1.23 3.67-1.44 4.09-1.45.09 0 .3.02.43.12.11.08.14.2.16.29.02.1.03.31.01.47z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="font-serif font-bold text-lg tracking-wide text-white">Telegram</div>
+            <div class="text-xs text-[#fcceb7] font-medium mt-0.5">+380 (95) 109 62 79</div>
+          </div>
+          <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-wider uppercase text-white/90 group-hover:text-white pt-1">
+            Відкрити чат
+            <svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </span>
+        </a>
+
+        <!-- WhatsApp Card (Cream/White Card with Terracotta Accents) -->
+        <a href="https://wa.me/380951096279" target="_blank" rel="noopener noreferrer" class="group relative p-5 rounded-2xl bg-white/90 text-[#111111] border border-[#fcceb7] shadow-sm hover:border-[#bd603f] hover:shadow-card-hover transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-center justify-between gap-3 text-center">
+          <div class="w-12 h-12 rounded-xl bg-[#fcceb7]/40 text-[#bd603f] flex items-center justify-center group-hover:bg-[#bd603f] group-hover:text-white transition-all duration-300 shadow-sm">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.963C16.388 2.019 13.91 1.01 11.983 1.01c-5.441 0-9.866 4.372-9.87 9.802 0 1.734.45 3.424 1.302 4.922L2.392 21.01l5.421-1.411c-.34.22-.34.22-.34.22zm11.367-7.051c-.301-.15-1.781-.877-2.056-.977-.275-.1-.475-.15-.675.15-.199.3-.775.976-.95 1.176-.175.2-.35.225-.65.075-.301-.15-1.267-.467-2.414-1.49-.893-.797-1.495-1.782-1.67-2.081-.175-.3-.018-.462.13-.61.137-.133.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.675-1.625-.925-2.225-.244-.589-.493-.51-.675-.519-.174-.009-.374-.01-.574-.01-.2 0-.525.075-.8.375-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.113 3.227 5.118 4.525.715.31 1.273.496 1.71.635.717.228 1.37.196 1.885.119.574-.085 1.781-.727 2.031-1.428.25-.7.25-1.3.175-1.428-.075-.125-.275-.2-.575-.35z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="font-serif font-bold text-lg tracking-wide text-[#111111] group-hover:text-[#bd603f] transition">WhatsApp</div>
+            <div class="text-xs text-[#899895] font-medium mt-0.5">+380 (95) 109 62 79</div>
+          </div>
+          <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-wider uppercase text-[#bd603f] group-hover:text-[#111111] transition pt-1">
+            Написати
+            <svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#111111] text-white py-14 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+      
+      <div class="flex items-center gap-3.5">
+        <div class="w-10 h-12 bg-white p-1 rounded-xl flex items-center justify-center shrink-0 shadow-sm">
+          <img src="/shtayer-logo.svg" alt="SHTAYER Emblem" class="w-full h-full object-contain" />
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif text-xl font-bold tracking-[0.2em] uppercase">SHTAYER</span>
+          <span class="text-[9px] tracking-[0.3em] text-[#fcceb7] uppercase">Atelier Textile</span>
+        </div>
+      </div>
+
+      <div class="text-xs text-[#899895] text-center md:text-left leading-relaxed">
+        © 2026 Shtayer Atelier Textile. Усі права захищено. Спеціально для архітекторів та дизайнерів інтер'єру.
+      </div>
+
+      <div class="flex items-center space-x-6 text-xs text-[#fcceb7] font-medium">
+        <a href="https://shtayer.ua" target="_blank" class="hover:underline hover:text-white transition">shtayer.ua</a>
+        <a href="https://instagram.com/shtayer.ua" target="_blank" class="hover:underline hover:text-white transition">@shtayer.ua</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Quick Actions & Back To Top -->
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <!-- Back To Top Button -->
+    <button onclick="scrollToTop()" id="backToTopBtn" class="w-11 h-11 rounded-full bg-[#111111] text-white flex items-center justify-center shadow-2xl hover:bg-[#bd603f] transition duration-300 opacity-0 pointer-events-none transform hover:scale-110 border border-white/20">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+    </button>
+  </div>
+
+  <!-- Image Lightbox Modal -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4 backdrop-blur-md" onclick="closeLightbox()">
+    <div class="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center" onclick="event.stopPropagation()">
+      <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white hover:text-[#fcceb7] text-3xl font-bold transition">
+        &times;
+      </button>
+      <img id="lightboxImg" src="" alt="Zoom" class="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-white/20" />
+      <div id="lightboxCaption" class="mt-4 text-center font-serif text-base text-white"></div>
+    </div>
+  </div>
+
+  <!-- Form Success Modal -->
+  <div id="successModal" class="fixed inset-0 z-50 bg-black/75 hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white p-8 sm:p-10 rounded-3xl max-w-md w-full text-center space-y-5 shadow-2xl border-2 border-[#bd603f]">
+      <div class="w-16 h-16 rounded-full bg-[#fcceb7] text-[#bd603f] flex items-center justify-center mx-auto text-3xl font-bold shadow-sm">
+        ✓
+      </div>
+      <h3 class="font-serif text-2xl sm:text-3xl font-bold text-[#111111]" id="modalSuccessTitle">Дякуємо за заявку!</h3>
+      <p class="text-sm text-[#899895] leading-relaxed" id="modalSuccessBody">
+        Менеджер бренду Shtayer вже готує для вас Sample Box та зв'яжеться з вами у найближчий час.
+      </p>
+      <button onclick="closeSuccessModal()" class="w-full bg-[#bd603f] hover:bg-[#111111] text-white py-3.5 rounded-xl text-xs font-semibold uppercase tracking-widest transition duration-300">
+        Закрити
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript App Logic -->
+  <script>
+    // Language Translations Dictionary
+    const translations = {
+      uk: {
+        topBarText: "Ексклюзивна лінійка для партнерів — Безкоштовний Sample Box для архітекторів та дизайнерів",
+        navPhilosophy: "Філософія",
+        navAtelier: "Мануфактура",
+        navCollections: "Колекції",
+        navDesigners: "Дизайнерам",
+        navContacts: "Контакти",
+        ctaHeader: "Sample Box",
+        heroBadge: "Презентація для партнерів — архітекторів та дизайнерів",
+        heroTitle: "Досконалість у деталях: Текстильні рішення преміум-класу",
+        heroSubtitle: "Презентація для партнерів — архітекторів та дизайнерів інтер'єру",
+        heroBody: "Особлива ніша текстилю для вибагливих клієнтів. Створюємо вироби, які гармонійно завершують авторську візію простору.",
+        heroCta1: "Замовити Sample Box",
+        heroCta2: "Огляд колекцій",
+        stat1: "Зразків тканин у Sample Box",
+        stat2: "Натуральна бавовна, шовк, льон",
+        stat3: "Пошиття за авторськими розмірами",
+        stat4: "Сервіс комплектації «під ключ»",
+        sec2Category: "Візія та Філософія",
+        sec2Title: "Візія дизайнера завершується дотиком",
+        sec2Subtitle: "Тактильний інтелект вашого інтер'єру",
+        sec2Feature1Title: "Авторська візія",
+        sec2Feature1Desc: "Точне слідування концепції інтер'єру та колористиці",
+        sec2Feature2Title: "Бескомпромісний затишок",
+        sec2Feature2Desc: "Завершення простору преміальними натуральними текстурами",
+        quoteBox: "«Текстиль — це шкіра інтер'єру. Фінальний акорд вашого проєкту.»",
+        sec3Category: "Концепція Мануфактури",
+        sec3Title: "Ательє тихих розкошів",
+        sec3Subtitle: "Текстиль, що говорить мовою високого дизайну",
+        sec3Item1: "Приватні резиденції та вілли преміум-сегменту",
+        sec3Item2: "Бутик-готелі та SPA-курорти",
+        sec3Item3: "Ексклюзивні інтер'єри супер-яхт",
+        sec4Category: "Стандарти Якості",
+        sec4Title: "Мануфактурний підхід та майстерність",
+        sec4Subtitle: "Якість, за яку ви з гордістю ручаєтесь перед клієнтом",
+        sec4Card1Title: "Матеріали",
+        sec4Card1Desc: "Сертифікована довговолокниста єгипетська бавовна, натуральний шовк, льон та преміальні наповнювачі.",
+        sec4Card2Title: "Виконання",
+        sec4Card2Desc: "Кожен шов, кант і вишивка проходять ручний контроль. Ми гарантуємо ідеальну геометрію виробів навіть після сотень прань.",
+        sec4Card3Title: "Відчуття",
+        sec4Card3Desc: "Ваші клієнти відчують виняткову преміальність з першого ж дотику.",
+        sec5Category: "Асортимент & Комплектація",
+        sec5Title: "Комплектація спальні та ванної кімнати «під ключ»",
+        sec5Subtitle: "Асортимент, що закриває будь-які текстильні потреби об'єкта",
+        tab1Head: "Колекції з сатину, перкалю та натурального шовку",
+        tab1Desc: "Виготовляємо постільну білизну найвищого ґатунку. Пошиття під нестандартні матраци, круглі ліжка, високі подіуми та складні формати.",
+        tab2Head: "Індивідуальне «меню подушок» та терморегулюючі ковдри",
+        tab2Desc: "Розробляємо персональне меню подушок різної пружності для ідеального клімат-контролю сну вашого клієнта.",
+        tab3Head: "Халати та рушники з відчуттям 5-зіркового SPA",
+        tab3Desc: "Махрові вироби високої щільності (550-700 г/м²), які зберігають м'якість і білосніжність тривалий час.",
+        sec6Category: "Партнерська Програма",
+        sec6Title: "Професійні можливості для дизайнерів та архітекторів",
+        sec6Desc: "Співпраця, що підкреслить статус ваших проєктів та закриє складні завдання комплектації.",
+        sec6Feat1Title: "Партнерські програми",
+        sec6Feat1Desc: "Спеціальні умови закупівлі, агентська винагорода або індивідуальні знижки для клієнтів.",
+        sec6Feat2Title: "Професійні матеріали",
+        sec6Feat2Desc: "Преміальний Sample Box зі зразками матеріалів наших колекцій.",
+        sec6Feat3Title: "Супровід «під ключ»",
+        sec6Feat3Desc: "Персональний технолог візьме на себе всі закриття — від замірів до застеляння.",
+        formTitle: "Замовити Sample Box та умови співпраці",
+        formSubtitle: "Заповніть форму, щоб безкоштовно отримати зразки тканин та спеціальний каталог для партнерів.",
+        labelName: "Ваше ім'я та прізвище *",
+        labelPhone: "Номер телефону (Viber / Telegram / WhatsApp) *",
+        labelStudio: "Назва студії / Місто",
+        labelInterest: "Що вас найбільше цікавить?",
+        btnSubmitForm: "Відправити заявку на Sample Box",
+        formPrivacy: "Заявка надсилається безпосередньо менеджеру бренду Shtayer. Ми збережемо вашу конфіденційність.",
+        sec7Category: "Надійне Партнерство",
+        sec7Title: "Ваш надійний партнер при комплектації",
+        sec7Subtitle: "Знімаємо з вас турботи щодо текстильного оформлення об'єкта",
+        sec7Point1Title: "Персональний технолог",
+        sec7Point1Desc: "Повний супровід вашого замовлення від замірів ліжок на об'єкті до фінального застеляння перед здачею.",
+        sec7Point2Title: "Захист вашої репутації",
+        sec7Point2Desc: "Ви рекомендуєте продукт, який слугуватиме роками. Клієнт буде вдячний за комфорт щоночі.",
+        sec7Point3Title: "Спеціальні умови",
+        sec7Point3Desc: "Гнучка програма лояльності або агентська винагорода для дизайнерів.",
+        sec8Category: "Прямий Зв'язок",
+        sec8Title: "Створюймо бездоганні інтер'єри разом",
+        sec8Subtitle: "Контактна інформація бренду Shtayer",
+        contactPhoneLabel: "Телефон",
+        contactPhoneHint: "Натисніть для дзвінка",
+        contactEmailLabel: "Електронна пошта",
+        contactEmailHint: "Надіслати листа",
+        contactInstaHint: "Перейти у профіль",
+        contactWebHint: "Відкрити каталог",
+        messengersTitle: "Швидкий зв'язок у месенджерах",
+        messengersSubtitle: "Наші менеджери на зв'язку для консультації та узгодження зразків",
+        zoomHint: "Натисніть для перегляду"
+      },
+      ru: {
+        topBarText: "Эксклюзивная линейка для партнеров — Бесплатный Sample Box для архитекторов и дизайнеров",
+        navPhilosophy: "Философия",
+        navAtelier: "Мануфактура",
+        navCollections: "Коллекции",
+        navDesigners: "Дизайнерам",
+        navContacts: "Контакты",
+        ctaHeader: "Sample Box",
+        heroBadge: "Презентация для партнеров — архитекторов и дизайнеров",
+        heroTitle: "Совершенство в деталях: Текстильные решения премиум-класса",
+        heroSubtitle: "Презентация для партнеров — архитекторов и дизайнеров интерьера",
+        heroBody: "Особая ниша текстиля для взыскательных клиентов. Создаем изделия, которые гармонично завершают авторское видение пространства.",
+        heroCta1: "Заказать Sample Box",
+        heroCta2: "Обзор коллекций",
+        stat1: "Образцов тканей в Sample Box",
+        stat2: "Натуральный хлопок, шелк, лен",
+        stat3: "Пошив по авторским размерам",
+        stat4: "Сервис комплектации «под ключ»",
+        sec2Category: "Видение и Философия",
+        sec2Title: "Видение дизайнера завершается прикосновением",
+        sec2Subtitle: "Тактильный интеллект вашего интерьера",
+        sec2Feature1Title: "Авторское видение",
+        sec2Feature1Desc: "Точное следование концепции интерьера и колористике",
+        sec2Feature2Title: "Бескомпромиссный уют",
+        sec2Feature2Desc: "Завершение пространства премиальными натуральными текстурами",
+        quoteBox: "«Текстиль — это кожа интерьера. Финальный аккорд вашего проекта.»",
+        sec3Category: "Концепция Мануфактуры",
+        sec3Title: "Ателье тихой роскоши",
+        sec3Subtitle: "Текстиль, говорящий на языке высокого дизайна",
+        sec3Item1: "Частные резиденции и виллы премиум-сегмента",
+        sec3Item2: "Бутик-отели и SPA-курорты",
+        sec3Item3: "Эксклюзивные интерьеры супер-яхт",
+        sec4Category: "Стандарты Качества",
+        sec4Title: "Мануфактурный подход и мастерство",
+        sec4Subtitle: "Качество, за которое вы с гордостью ручаетесь перед клиентом",
+        sec4Card1Title: "Материалы",
+        sec4Card1Desc: "Сертифицированный длинноволокнистый египетский хлопок, натуральный шелк, лен и премиальные наполнители.",
+        sec4Card2Title: "Исполнение",
+        sec4Card2Desc: "Каждый шов, кант и вышивка проходят ручной контроль. Мы гарантируем идеальную геометрию изделий даже после сотен стирок.",
+        sec4Card3Title: "Ощущения",
+        sec4Card3Desc: "Ваши клиенты почувствуют исключительную премиальность с первого же прикосновения.",
+        sec5Category: "Ассортимент & Комплектация",
+        sec5Title: "Комплектация спальни и ванной комнаты «под ключ»",
+        sec5Subtitle: "Ассортимент, закрывающий любые текстильные потребности объекта",
+        tab1Head: "Коллекции из сатина, перкаля и натурального шелка",
+        tab1Desc: "Изготавливаем постельное белье высшего качества. Пошив под нестандартные матрасы, круглые кровати и сложные форматы.",
+        tab2Head: "Индивидуальное «меню подушек» и терморегулирующие одеяла",
+        tab2Desc: "Разрабатываем персональное меню подушек различной упругости для идеального климат-контроля сна вашего клиента.",
+        tab3Head: "Халаты и полотенца с ощущением 5-звездочного SPA",
+        tab3Desc: "Махровые изделия высокой плотности (550-700 г/м²), сохраняющие мягкость и белоснежность длительное время.",
+        sec6Category: "Партнерская Программа",
+        sec6Title: "Профессиональные возможности для дизайнеров и архитекторов",
+        sec6Desc: "Сотрудничество, которое подчеркнет статус ваших проектов и закроет сложные задачи комплектации.",
+        sec6Feat1Title: "Партнерские программы",
+        sec6Feat1Desc: "Специальные условия закупки, агентское вознаграждение или индивидуальные скидки для клиентов.",
+        sec6Feat2Title: "Профессиональные материалы",
+        sec6Feat2Desc: "Премиальный Sample Box с образцами материалов наших коллекций.",
+        sec6Feat3Title: "Сопровождение «под ключ»",
+        sec6Feat3Desc: "Персональный технолог возьмет на себя все заботы — от замеров до заправки.",
+        formTitle: "Заказать Sample Box и условия сотрудничества",
+        formSubtitle: "Заполните форму, чтобы бесплатно получить образцы тканей и специальный каталог для партнеров.",
+        labelName: "Ваше имя и фамилия *",
+        labelPhone: "Номер телефона (Viber / Telegram / WhatsApp) *",
+        labelStudio: "Название студии / Город",
+        labelInterest: "Что вас больше всего интересует?",
+        btnSubmitForm: "Отправить заявку на Sample Box",
+        formPrivacy: "Заявка отправляется напрямую менеджеру бренда Shtayer. Мы сохраним вашу конфиденциальность.",
+        sec7Category: "Надежное Партнерство",
+        sec7Title: "Ваш надежный партнер при комплектации",
+        sec7Subtitle: "Снимаем с вас заботы по текстильному оформлению объекта",
+        sec7Point1Title: "Персональный технолог",
+        sec7Point1Desc: "Полное сопровождение вашего заказа от замеров кроватей на объекте до финальной заправки перед сдачей.",
+        sec7Point2Title: "Защита репутации",
+        sec7Point2Desc: "Вы рекомендуете продукт, который прослужит годами. Клиент будет благодарен за комфорт каждую ночь.",
+        sec7Point3Title: "Специальные условия",
+        sec7Point3Desc: "Гибкая программа лояльности или агентское вознаграждение для дизайнеров.",
+        sec8Category: "Прямая Связь",
+        sec8Title: "Создаем безупречные интерьеры вместе",
+        sec8Subtitle: "Контактная информация бренда Shtayer",
+        contactPhoneLabel: "Телефон",
+        contactPhoneHint: "Нажмите для звонка",
+        contactEmailLabel: "Электронная почта",
+        contactEmailHint: "Отправить письмо",
+        contactInstaHint: "Перейти в профиль",
+        contactWebHint: "Открыть каталог",
+        messengersTitle: "Быстрая связь в мессенджерах",
+        messengersSubtitle: "Наши менеджеры на связи для консультации и согласования образцов",
+        zoomHint: "Нажмите для просмотра"
+      },
+      en: {
+        topBarText: "Exclusive Partner Portfolio — Complimentary Sample Box for Architects & Interior Designers",
+        navPhilosophy: "Philosophy",
+        navAtelier: "Craftsmanship",
+        navCollections: "Collections",
+        navDesigners: "Designers",
+        navContacts: "Contacts",
+        ctaHeader: "Sample Box",
+        heroBadge: "Partner Presentation — Architects & Interior Designers",
+        heroTitle: "Perfection in Details: Premium Textile Solutions",
+        heroSubtitle: "Presentation for Partners — Architects and Interior Designers",
+        heroBody: "A dedicated textile niche for discerning clients. We craft pieces that harmoniously complete the designer's vision of space.",
+        heroCta1: "Order Sample Box",
+        heroCta2: "View Collections",
+        stat1: "Fabric Swatches in Sample Box",
+        stat2: "Natural Cotton, Mulberry Silk, Organic Linen",
+        stat3: "Custom Tailoring to Architectural Specs",
+        stat4: "Turnkey Procurement & Installation",
+        sec2Category: "Vision & Philosophy",
+        sec2Title: "A Designer's Vision Culminates in Touch",
+        sec2Subtitle: "Tactile Intelligence of Your Interior",
+        sec2Feature1Title: "Designer's Vision",
+        sec2Feature1Desc: "Strict adherence to room concept and color palette",
+        sec2Feature2Title: "Uncompromising Comfort",
+        sec2Feature2Desc: "Completing space with noble natural textures",
+        quoteBox: "«Textiles are the skin of the interior. The final chord of your project.»",
+        sec3Category: "Atelier Concept",
+        sec3Title: "Atelier of Quiet Luxury",
+        sec3Subtitle: "Textiles Speaking the Language of High Design",
+        sec3Item1: "Private residences & high-end villas",
+        sec3Item2: "Boutique hotels & luxury SPA resorts",
+        sec3Item3: "Bespoke superyacht interiors",
+        sec4Category: "Quality Standards",
+        sec4Title: "Atelier Craftsmanship & Detail",
+        sec4Subtitle: "Quality You Proudly Guarantee to Your Client",
+        sec4Card1Title: "Materials",
+        sec4Card1Desc: "Certified long-staple Egyptian cotton, natural mulberry silk, organic linen, and premium fillings.",
+        sec4Card2Title: "Tailoring",
+        sec4Card2Desc: "Every seam, piping, and embroidery undergoes meticulous hand inspection. We guarantee perfect geometry.",
+        sec4Card3Title: "Experience",
+        sec4Card3Desc: "Your clients will feel the extraordinary quality from the very first touch.",
+        sec5Category: "Portfolio & Procurement",
+        sec5Title: "Turnkey Bedroom & Bathroom Collection",
+        sec5Subtitle: "A Curated Portfolio Covering All Textile Specifications",
+        tab1Head: "Refined Sateen, Percale, and Silk Collections",
+        tab1Desc: "Tailoring bespoke luxury bed linens for custom sizes, round beds, and non-standard mattress profiles.",
+        tab2Head: "Custom Pillow Menu & Climate-Control Duvets",
+        tab2Desc: "Designing an intuitive pillow menu with varying firmness for ultimate sleep climate control.",
+        tab3Head: "High-Density Spa Robes and Towels",
+        tab3Desc: "High-density (550-700 gsm) terry items delivering a 5-star spa sensation in private bath suites.",
+        sec6Category: "Partner Program",
+        sec6Title: "Exclusive Opportunities for Designers & Architects",
+        sec6Desc: "Partnership that elevates the status of your projects and streamlines procurement.",
+        sec6Feat1Title: "Partnership Terms",
+        sec6Feat1Desc: "Dedicated loyalty incentives, bespoke agent commissions, or client-exclusive pricing.",
+        sec6Feat2Title: "Design Materials",
+        sec6Feat2Desc: "Signature Sample Box with material swatches from our collections.",
+        sec6Feat3Title: "Turnkey Logistics",
+        sec6Feat3Desc: "A dedicated specialist handles everything from measurements to final styling.",
+        formTitle: "Order Sample Box & Designer Terms",
+        formSubtitle: "Fill out the form to receive complimentary fabric samples and our designer catalog.",
+        labelName: "Your Full Name *",
+        labelPhone: "Phone Number (Viber / Telegram / WhatsApp) *",
+        labelStudio: "Design Studio / City",
+        labelInterest: "What interests you the most?",
+        btnSubmitForm: "Submit Request for Sample Box",
+        formPrivacy: "Your request is sent directly to Shtayer brand management. We honor your privacy.",
+        sec7Category: "Reliable Partnership",
+        sec7Title: "Your Reliable Partner in Procurement",
+        sec7Subtitle: "Taking Off Your Shoulders the Entire Textile Specification Process",
+        sec7Point1Title: "Personal Specialist",
+        sec7Point1Desc: "Complete support for your order from professional on-site measurements to final styling.",
+        sec7Point2Title: "Brand Safety",
+        sec7Point2Desc: "You recommend a durable product that lasts for years. Your client will thank you every night.",
+        sec7Point3Title: "Designer Benefits",
+        sec7Point3Desc: "Highly favorable partnership programs, loyalty incentives, or custom commissions.",
+        sec8Category: "Direct Contact",
+        sec8Title: "Let's Co-Create Impeccable Interiors",
+        sec8Subtitle: "Shtayer Contact Details",
+        contactPhoneLabel: "Phone",
+        contactPhoneHint: "Tap to call",
+        contactEmailLabel: "E-mail",
+        contactEmailHint: "Send email",
+        contactInstaHint: "Open Instagram profile",
+        contactWebHint: "Open online store",
+        messengersTitle: "Instant Messenger Support",
+        messengersSubtitle: "Our team is available on all key messaging apps for quick consultations",
+        zoomHint: "Click to zoom image"
+      }
+    };
+
+    let currentLanguage = 'uk';
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      
+      // Update language buttons active styles
+      document.querySelectorAll('[id^="btn-"]').forEach(btn => {
+        btn.className = "px-2.5 py-1 rounded-full transition duration-200 text-[#111111]/60 hover:text-[#bd603f]";
+      });
+      const activeBtn = document.getElementById(`btn-${lang}`);
+      if (activeBtn) {
+        activeBtn.className = "px-2.5 py-1 rounded-full transition duration-200 bg-[#bd603f] text-white font-bold";
+      }
+
+      // Update text content for data-key attributes
+      const langDict = translations[lang] || translations.uk;
+      document.querySelectorAll('[data-key]').forEach(elem => {
+        const key = elem.getAttribute('data-key');
+        if (langDict[key]) {
+          elem.textContent = langDict[key];
+        }
+      });
+    }
+
+    // Interactive Collection Tabs
+    function switchTab(tabKey) {
+      // Hide all content blocks
+      document.querySelectorAll('.tab-content').forEach(block => {
+        block.classList.add('hidden');
+      });
+
+      // Reset tab buttons
+      document.querySelectorAll('[id^="tab-"]').forEach(btn => {
+        btn.className = "px-6 py-3.5 text-xs sm:text-sm font-semibold tracking-wider uppercase border-b-2 border-transparent text-white/60 hover:text-white transition duration-300 shrink-0";
+      });
+
+      // Show selected content and highlight tab
+      const targetContent = document.getElementById(`content-${tabKey}`);
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+      }
+
+      const activeTabBtn = document.getElementById(`tab-${tabKey}`);
+      if (activeTabBtn) {
+        activeTabBtn.className = "px-6 py-3.5 text-xs sm:text-sm font-semibold tracking-wider uppercase border-b-2 border-[#bd603f] text-[#fcceb7] transition duration-300 shrink-0";
+      }
+    }
+
+    // Lightbox Modal Functions
+    function openLightbox(imgUrl, caption) {
+      const modal = document.getElementById('lightboxModal');
+      const img = document.getElementById('lightboxImg');
+      const cap = document.getElementById('lightboxCaption');
+      
+      img.src = imgUrl;
+      cap.textContent = caption || '';
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightboxModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Back to Top Button Observer
+    window.addEventListener('scroll', () => {
+      const btn = document.getElementById('backToTopBtn');
+      if (window.scrollY > 400) {
+        btn.classList.remove('opacity-0', 'pointer-events-none');
+        btn.classList.add('opacity-100');
+      } else {
+        btn.classList.add('opacity-0', 'pointer-events-none');
+        btn.classList.remove('opacity-100');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Lead Form Handler
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('designerName').value;
+      const phone = document.getElementById('designerPhone').value;
+      const studio = document.getElementById('designerStudio').value;
+      
+      const checkboxes = document.querySelectorAll('input[name="interest"]:checked');
+      const interests = Array.from(checkboxes).map(cb => cb.value).join(', ');
+
+      const email = "shtayer.forhotel@gmail.com";
+      const subject = encodeURIComponent(`Заявка на Sample Box від: ${name}`);
+      const body = encodeURIComponent(
+        `Заявка на створення партнерського акаунту та замовлення Sample Box:\n\n` +
+        `• Ім'я та прізвище: ${name}\n` +
+        `• Номер телефону: ${phone}\n` +
+        `• Студія / Місто: ${studio || 'Не вказано'}\n` +
+        `• Інтереси: ${interests || 'Sample Box'}\n\n` +
+        `---\nНадіслано з офіційного веб-лендінгу Shtayer Atelier`
+      );
+
+      // Trigger prefilled mailto email client
+      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+
+      // Open Success Modal
+      document.getElementById('successModal').classList.remove('hidden');
+      document.getElementById('successModal').classList.add('flex');
+    }
+
+    function closeSuccessModal() {
+      document.getElementById('successModal').classList.add('hidden');
+      document.getElementById('successModal').classList.remove('flex');
+      document.getElementById('leadForm').reset();
+    }
+
+    // Toggle Sample Box Expandable Form
+    function toggleSampleBoxForm(forceOpen) {
+      const wrapper = document.getElementById('sampleBoxFormWrapper');
+      const btnText = document.getElementById('toggleFormBtnText');
+      const chevronIcon = document.getElementById('chevronIcon');
+      if (!wrapper) return;
+
+      const isHidden = wrapper.classList.contains('hidden');
+      const shouldOpen = forceOpen !== undefined ? forceOpen : isHidden;
+
+      if (shouldOpen) {
+        wrapper.classList.remove('hidden');
+        if (chevronIcon) chevronIcon.classList.add('rotate-180');
+        if (btnText) {
+          const lang = typeof currentLanguage !== 'undefined' ? currentLanguage : 'uk';
+          const closeLabel = lang === 'uk' ? 'Згорнути форму' : (lang === 'ru' ? 'Свернуть форму' : 'Collapse Form');
+          btnText.innerHTML = `
+            <svg class="w-5 h-5 text-[#fcceb7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
+            <span data-key="btnCloseSampleForm">${closeLabel}</span>
+          `;
+        }
+      } else {
+        wrapper.classList.add('hidden');
+        if (chevronIcon) chevronIcon.classList.remove('rotate-180');
+        if (btnText) {
+          const lang = typeof currentLanguage !== 'undefined' ? currentLanguage : 'uk';
+          const openLabel = lang === 'uk' ? 'Оформити заявку на Sample Box' : (lang === 'ru' ? 'Оформить заявку на Sample Box' : 'Order Sample Box');
+          btnText.innerHTML = `
+            <svg class="w-5 h-5 text-[#fcceb7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            <span data-key="btnOpenSampleForm">${openLabel}</span>
+          `;
+        }
+      }
+    }
+
+    // Auto open form on hashtag navigation
+    window.addEventListener('hashchange', function() {
+      if (window.location.hash === '#sample-box') {
+        toggleSampleBoxForm(true);
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.location.hash === '#sample-box') {
+        toggleSampleBoxForm(true);
+      }
+    });
+  </script>
+</body>
+</html>
